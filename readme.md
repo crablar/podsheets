@@ -1,6 +1,9 @@
 # Podsheets
 Content management system for podcasts.
 
+### Quick Setup
+docker build -t podsheet .
+docker-compose up
 
 ### Setup
 
