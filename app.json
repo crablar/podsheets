@@ -1,0 +1,81 @@
+{
+  "name": "podsheets",
+  "description": "",
+  "scripts": {
+  },
+  "env": {
+    "CREATE_ACCOUNT_ENABLED": {
+      "required": true
+    },
+    "FACEBOOK_CALLBACK_URL": {
+      "required": true
+    },
+    "FACEBOOK_CLIENT_ID": {
+      "required": true
+    },
+    "FACEBOOK_CLIENT_SECRET": {
+      "required": true
+    },
+    "GOOGLE_CALLBACK_URL": {
+      "required": true
+    },
+    "GOOGLE_CLIENT_ID": {
+      "required": true
+    },
+    "GOOGLE_CLIENT_SECRET": {
+      "required": true
+    },
+    "GOOGLE_STORAGE_BUCKET": {
+      "required": true
+    },
+    "GOOGLE_STORAGE_CLIENT_EMAIL": {
+      "required": true
+    },
+    "GOOGLE_STORAGE_PRIVATE_KEY": {
+      "required": true
+    },
+    "GOOGLE_STORAGE_PROJECT_ID": {
+      "required": true
+    },
+    "HOSTNAME": {
+      "required": true
+    },
+    "MONGODB_URI": {
+      "required": true
+    },
+    "NPM_CONFIG_PRODUCTION": {
+      "required": true
+    },
+    "SESSION_SECRET": {
+      "required": true
+    },
+    "SMTP_HOST": {
+      "required": true
+    },
+    "SMTP_PASSWORD": {
+      "required": true
+    },
+    "SMTP_USER": {
+      "required": true
+    },
+    "STRIPE_PUBLISHABLE_KEY": {
+      "required": true
+    },
+    "STRIPE_SECRET_KEY": {
+      "required": true
+    },
+    "USER_ACCOUNTS_ENABLED": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+    "mongolab"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

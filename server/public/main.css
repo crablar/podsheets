@@ -1,0 +1,78 @@
+.formUnderlineInput .ui.input > input {
+    border: none;
+    border-bottom-style: solid;
+    border-bottom-color: #3D3E8B;
+    border-bottom-width: 2px;
+    color: #3D3E8B;
+    border-radius: 0;
+    font-size: 180%;
+    padding-bottom: 5px;
+    padding-left: 0;
+}
+
+.formInput .ui.input > input {
+    color: #635E94;
+}
+
+.formBoxInput .field textarea {
+    color: #3D3E8B !important;
+    font-size: 120%;
+}
+
+.formBoxInput .field label {
+    color: #8882BA !important;
+    font-size: 140% !important;
+    padding-bottom: 5px;
+    font-weight: 100 !important;
+    padding-top: 30px;
+}
+
+.formUnderlineInput .ui.input > input:focus {
+    border-bottom-color: #8882BA;
+    color: #3D3E8B;
+    border-radius: 0;
+}
+/* Text input */
+.formUnderlineInput .ui.input > input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #3D3E8B;
+    opacity: 0.3;
+}
+.formUnderlineInput .ui.input > input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #3D3E8B;
+   opacity: 0.3;
+}
+.formUnderlineInput .ui.input > input::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #3D3E8B;
+   opacity: 0.3;
+}
+/* Text area */
+.formBoxInput .field textarea::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #3D3E8B;
+    opacity: 0.3;
+}
+.formBoxInput .field textarea:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #3D3E8B;
+   opacity: 0.3;
+}
+.formBoxInput .field textarea::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #3D3E8B;
+   opacity: 0.3;
+}
+.formBoxInput .field textarea:focus::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #3D3E8B;
+    opacity: 0.3;
+}
+.formBoxInput .field textarea:focus:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #3D3E8B;
+   opacity: 0.3;
+}
+.formBoxInput .field textarea:focus::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #3D3E8B;
+   opacity: 0.3;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

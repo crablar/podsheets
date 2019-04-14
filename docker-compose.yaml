@@ -1,0 +1,14 @@
+version: '3'
+services:
+  web:
+    image: "podsheet"
+    env_file:
+      - ./server/.env
+    ports:
+      # port has to match with port in .env file
+      - "3001:3001"
+  # instance name should match hostname part of the MONGODB_URI
+  mongo:
+    image: "mongo"
+    ports:
+      - "27017:27017"

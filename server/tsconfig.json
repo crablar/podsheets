@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "target": "es2015",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "outDir": "build",
+        "rootDir": "src",
+        "lib": ["es2015"],
+        "sourceMap": true,
+        "experimentalDecorators": true,
+        "removeComments": false,
+        "noImplicitAny": false,
+        "pretty": true,
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "jsx": "preserve"
+    },
+    "filesGlob": [
+        "src/**/*.ts",
+        "src/**/*.tsx"
+    ],
+    "exclude": [
+        "build",
+        "node_modules",
+        "src/__tests__/**"
+    ]
+}
