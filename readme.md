@@ -1,6 +1,8 @@
 # Podsheets
 Content management system for podcasts.
 
+Join our [FindCollabs](https://findcollabs.com/project/IQNarf2tJ8Un4esfoXck) to find out how to contribute to Podsheets.
+
 ### Quick Setup
 docker build -t podsheet .
 docker-compose up
