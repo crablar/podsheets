@@ -1,5 +1,5 @@
 # Podsheets
-Content management system for podcasts.
+Open source tools for podcast hosting, ad management, community engagement, and more.
 
 Join our [FindCollabs](https://findcollabs.com/project/IQNarf2tJ8Un4esfoXck) to find out how to contribute to Podsheets.
 
