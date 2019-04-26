@@ -8,6 +8,7 @@ import * as slug from "slug";
 import * as urlencode from "urlencode";
 import * as convert from "xml-js";
 import * as auth from "../lib/auth";
+import * as itunes from "../lib/itunes";
 import { logger } from "../lib/logger";
 import { sendColabInvite,  sendContactMessage, sendPodcastSubmission} from "../lib/mail";
 import Analytic from "../models/analytic";
@@ -77,13 +78,12 @@ export default (router: express.Router) => {
                 itunesImage: podcast.imageUrl,
             });
             episodes.forEach(e => {
-                let tempPodcastUrl = podcastUrl;
                 feed.item({
                     title: e.title,
                     description: e.fullContent,
-                    url: `${tempPodcastUrl}episode/${e._id}/download/${urlencode(e.audioUrl)}`,
-                    enclosure: { url: `${tempPodcastUrl}episode/${e._id}/download/${urlencode(e.audioUrl)}` },
-                    guid: e.guid || `${tempPodcastUrl}episode/${e._id}/download/${urlencode(e.audioUrl)}`,
+                    url: `${podcastUrl}episode/${e._id}/download/${urlencode(e.audioUrl)}`,
+                    enclosure: { url: `${podcastUrl}episode/${e._id}/download/${urlencode(e.audioUrl)}` },
+                    guid: e.guid || `${podcastUrl}episode/${e._id}/download/${urlencode(e.audioUrl)}`,
                     categories,
                     author: fullOwnerName,
                     date: e.createdAt.toISOString(),
@@ -141,7 +141,6 @@ export default (router: express.Router) => {
                 .sort({ updatedAt: -1 })
                 .exec();
 
-            let tempPodcastUrl = podcastUrl;
             const episodes = episodesDB.map(({
                  _id, title, podcast, published, summary, fullContent, createdAt, updatedAt,
             }: IEpisode) => ({
@@ -154,7 +153,7 @@ export default (router: express.Router) => {
                     createdAt,
                     updatedAt,
                     // Note: we overwrite the audio url, to get some analytics
-                    audioUrl: `${tempPodcastUrl}episode/${_id}/download`,
+                    audioUrl: `${podcastUrl}episode/${_id}/download`,
                 }));
             const fullOwnerName = `${podcastOwner.firstName} ${podcastOwner.lastName}`;
             const categories = currentPodcast.categories.split(",");
