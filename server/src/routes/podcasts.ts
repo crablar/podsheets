@@ -42,21 +42,8 @@ async function getSelectedPodcast(userId) {
 }
 
 export default (router: express.Router) => {
-    router.get("/p/using-reflection/rss.xml", async (req, res) => {
-        try {
-            res.redirect(301, "http://usingreflection.libsyn.com/rss");
-        } catch (e) {
-            logger.error(e);
-            return res.sendStatus(404);
-        }
-    });
     router.get("/p/:podcast_slug/rss.xml", async (req, res) => {
         try {
-            // TO-DO remove harcoded audio reviews stats
-            let isAudioReviews = false;
-            if (req.params.podcast_slug.indexOf("audio-reviews") > -1) {
-                isAudioReviews = true;
-            }
             const podcast = await Podcast.findOne({ slug: req.params.podcast_slug }).exec();
             if (!podcast) { return res.sendStatus(404); }
             const podcastOwner = await User.findById(podcast.owner).exec();
@@ -91,13 +78,6 @@ export default (router: express.Router) => {
             });
             episodes.forEach(e => {
                 let tempPodcastUrl = podcastUrl;
-                if (isAudioReviews) {
-                    const tempBlubrryStats = "http://media.blubrry.com/audio_reviews/";
-                    let index = podcastUrl.indexOf("/");
-                    index = index + 2;
-                    tempPodcastUrl = tempBlubrryStats + podcastUrl.substring(index, podcastUrl.length);
-                }
-
                 feed.item({
                     title: e.title,
                     description: e.fullContent,
@@ -118,7 +98,7 @@ export default (router: express.Router) => {
                 });
             });
 
-            // We manually add irunes category because in the podcasts module it doesn't work
+            // We manually add iTunes category because in the podcasts module it doesn't work
             const jsonFeed = JSON.parse(convert.xml2json(feed.xml(), { compact: false, spaces: 4 }));
             jsonFeed.elements[0].elements[0].elements.push({
                 type: "element",
@@ -148,11 +128,6 @@ export default (router: express.Router) => {
 
     router.get("/p/:podcast_slug", async (req, res) => {
         try {
-            // TO-DO remove harcoded audio reviews stats
-            let isAudioReviews = false;
-            if (req.params.podcast_slug.indexOf("audio-reviews") > -1) {
-                    isAudioReviews = true;
-            }
             const currentPodcast = await Podcast.findOne({ slug: req.params.podcast_slug }).exec();
             if (!currentPodcast) { return res.sendStatus(404); }
             const podcastOwner = await User.findById(currentPodcast.owner).exec();
@@ -167,13 +142,6 @@ export default (router: express.Router) => {
                 .exec();
 
             let tempPodcastUrl = podcastUrl;
-            if (isAudioReviews) {
-                const tempBlubrryStats = "http://media.blubrry.com/audio_reviews/";
-                let index = podcastUrl.indexOf("/");
-                index = index + 2;
-                tempPodcastUrl = tempBlubrryStats + podcastUrl.substring(index, podcastUrl.length);
-            }
-
             const episodes = episodesDB.map(({
                  _id, title, podcast, published, summary, fullContent, createdAt, updatedAt,
             }: IEpisode) => ({
