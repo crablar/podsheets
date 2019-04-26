@@ -42,14 +42,6 @@ async function getSelectedPodcast(userId) {
 }
 
 export default (router: express.Router) => {
-    router.get("/p/using-reflection/rss.xml", async (req, res) => {
-        try {
-            res.redirect(301, "http://usingreflection.libsyn.com/rss");
-        } catch (e) {
-            logger.error(e);
-            return res.sendStatus(404);
-        }
-    });
     router.get("/p/:podcast_slug/rss.xml", async (req, res) => {
         try {
             const podcast = await Podcast.findOne({ slug: req.params.podcast_slug }).exec();
@@ -106,7 +98,7 @@ export default (router: express.Router) => {
                 });
             });
 
-            // We manually add irunes category because in the podcasts module it doesn't work
+            // We manually add iTunes category because in the podcasts module it doesn't work
             const jsonFeed = JSON.parse(convert.xml2json(feed.xml(), { compact: false, spaces: 4 }));
             jsonFeed.elements[0].elements[0].elements.push({
                 type: "element",
