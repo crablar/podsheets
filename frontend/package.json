@@ -79,6 +79,6 @@
     "waveform-playlist": "^3.0.4",
     "webpack": "^3.2.0",
     "webpack-worker": "^0.0.18",
-    "worker-loader": "^0.8.1"
+    "worker-loader": "^0.8.1",
   }
 }
