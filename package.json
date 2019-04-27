@@ -11,7 +11,7 @@
     "build:server": "cd ./server && yarn install && npm run build",
     "build:copy:setup": "rm -rf ./server/public/dist && mkdir -p ./server/public/dist",
     "build:copy": "npm run build:copy:setup && cp ./frontend/dist/* ./server/public/dist/.",
-    "heroku-postbuild": "npm run build:frontend && npm run build:server",
+    "build": "npm run build:frontend && npm run build:server",
     "postbuild:frontend": "npm run build:copy",
     "prestart": "npm run build:server",
     "start": "cd ./server && npm run start"
