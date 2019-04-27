@@ -39,7 +39,6 @@
     "tslint": "^5.1.0",
     "tslint-loader": "^3.5.2",
     "typescript": "^2.2.2",
-    "webpack": "^3.2.0",
     "webpack-dev-server": "2.5.1",
     "webpack-worker": "^0.0.18",
     "worker-loader": "^0.8.1"
@@ -79,6 +78,7 @@
     "sample-rate": "1.0.0",
     "semantic-ui-react": "^0.68.0",
     "style-loader": "^0.23.1",
-    "waveform-playlist": "^3.0.4"
+    "waveform-playlist": "^3.0.4",
+    "webpack": "^3.2.0"
   }
 }
