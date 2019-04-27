@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Podcast content manager",
   "main": "server/build/index.js",
+  "engines": {
+    "node": "6.10.2"
+  },
   "scripts": {
     "build:frontend": "cd ./frontend && yarn install && npm run build",
     "build:server": "cd ./server && yarn install && npm run build",
