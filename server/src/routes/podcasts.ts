@@ -77,7 +77,7 @@ export default (router: express.Router) => {
                 itunesImage: podcast.imageUrl,
             });
             episodes.forEach(e => {
-                let tempPodcastUrl = podcastUrl;
+                const tempPodcastUrl = podcastUrl;
                 feed.item({
                     title: e.title,
                     description: e.fullContent,
@@ -141,7 +141,7 @@ export default (router: express.Router) => {
                 .sort({ updatedAt: -1 })
                 .exec();
 
-            let tempPodcastUrl = podcastUrl;
+            const tempPodcastUrl = podcastUrl;
             const episodes = episodesDB.map(({
                  _id, title, podcast, published, summary, fullContent, createdAt, updatedAt,
             }: IEpisode) => ({
