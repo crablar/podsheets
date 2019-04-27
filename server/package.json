@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "build/index.js",
+  "engines": {
+    "node": "6.10.2"
+  },
   "scripts": {
     "prebuild": "npm run clear",
     "build": "npm run lint && tsc",
