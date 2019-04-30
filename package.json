@@ -7,7 +7,7 @@
     "node": "6.10.2"
   },
   "scripts": {
-    "build:frontend": "cd ./frontend && yarn install && npm run build",
+    "build:frontend": "cd ./frontend && yarn install --production=false && npm run build",
     "build:server": "cd ./server && yarn install && npm run build",
     "build:copy:setup": "rm -rf ./server/public/dist && mkdir -p ./server/public/dist",
     "build:copy": "npm run build:copy:setup && cp ./frontend/dist/* ./server/public/dist/.",
