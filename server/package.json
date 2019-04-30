@@ -63,6 +63,7 @@
     "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
     "podcast": "0.2.2",
+    "puppeteer": "^1.15.0",
     "react-html-email": "^1.2.0",
     "react-quill": "^1.0.0-rc.3",
     "remote-file-size": "^3.0.3",
