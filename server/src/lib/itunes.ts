@@ -27,12 +27,11 @@ export async function addItunesPodcast(rssFeedUrl) {
     await page.goto("https://podcastsconnect.apple.com/my-podcasts/new-feed");
     const newFeedUrlField = await page.waitFor("#new-feed-url");
     await newFeedUrlField.type(rssFeedUrl);
-    let validateFeedButton = await page.waitFor("button.tb-btn--primary.new-feed-validate");
+    const validateFeedButton = await page.waitFor("button.tb-btn--primary.new-feed-validate");
     validateFeedButton.click();
 
-    let submitFeedButton = await page.waitFor("button.tb-btn--primary.new-feed-submit");
+    const submitFeedButton = await page.waitFor("button.tb-btn--primary.new-feed-submit");
     await page.waitFor(5000);
-    console.log(submitFeedButton)
     // button logs correctly but nothing happens on click
     submitFeedButton.click();
 
