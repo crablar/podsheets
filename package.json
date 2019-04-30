@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "Podcast content manager",
   "main": "server/build/index.js",
+  "engines": {
+    "node": "6.10.2"
+  },
   "scripts": {
     "build:frontend": "cd ./frontend && yarn install && npm run build",
     "build:server": "cd ./server && yarn install && npm run build",
     "build:copy:setup": "rm -rf ./server/public/dist && mkdir -p ./server/public/dist",
     "build:copy": "npm run build:copy:setup && cp ./frontend/dist/* ./server/public/dist/.",
-    "build": "npm run build:frontend && npm run build:server",
+    "heroku-postbuild": "npm run build:frontend && npm run build:server",
     "postbuild:frontend": "npm run build:copy",
     "prestart": "npm run build:server",
     "start": "cd ./server && npm run start"

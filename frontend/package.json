@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/bundle.js",
+  "engines": {
+    "node": "6.10.2"
+  },
   "scripts": {
-    "prebuild": "npm run clear",
     "build": "webpack -p",
     "lint": "tslint 'src/**/*.ts?(x)'",
     "dev": "npm run clear && webpack-dev-server -d --inline --hot --progress --no-info",
