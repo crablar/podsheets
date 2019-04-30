@@ -1,6 +1,6 @@
 import * as puppeteer from "puppeteer";
 
-export async function addItunesPodcast() {
+export async function addItunesPodcast(rssFeedUrl) {
   (async() => {
     const browser = await puppeteer.launch({
       headless: false,
@@ -25,8 +25,19 @@ export async function addItunesPodcast() {
     await page.waitFor(2000);
 
     await page.goto("https://podcastsconnect.apple.com/my-podcasts/new-feed");
+    const newFeedUrlField = await page.waitFor("#new-feed-url");
+    await newFeedUrlField.type(rssFeedUrl);
+    let validateFeedButton = await page.waitFor("button.tb-btn--primary.new-feed-validate");
+    validateFeedButton.click();
+
+    let submitFeedButton = await page.waitFor("button.tb-btn--primary.new-feed-submit");
     await page.waitFor(5000);
-    // await page.screenshot({path: 'out.png', fullPage: true});
+    console.log(submitFeedButton)
+    // button logs correctly but nothing happens on click
+    submitFeedButton.click();
+
+    await page.waitFor(45000);
+
     await browser.close();
   })();
 }
