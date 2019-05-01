@@ -3,15 +3,16 @@ import * as puppeteer from "puppeteer";
 export async function addItunesPodcast(rssFeedUrl) {
   (async() => {
     const browser = await puppeteer.launch({
-      headless: false,
+      headless: true,
     });
 
     const page = await browser.newPage();
+    await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64)\
+    AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36");
     await page.goto("https://itunesconnect.apple.com/login");
     await page.waitFor(5000);
     const frames = await page.frames();
     const authFrame = frames.find(f => f.name() === "aid-auth-widget-iFrame");
-
     const usernameField = await authFrame.$("#account_name_text_field");
     await usernameField.type(process.env.ITUNES_USER);
     let signInButton = await authFrame.$("#sign-in");
@@ -31,12 +32,10 @@ export async function addItunesPodcast(rssFeedUrl) {
     validateFeedButton.click();
 
     const submitFeedButton = await page.waitFor("button.tb-btn--primary.new-feed-submit");
-    await page.waitFor(5000);
-    // button logs correctly but nothing happens on click
+    await page.waitFor(10000);
     submitFeedButton.click();
-
-    await page.waitFor(45000);
-
+    await page.waitFor(25000);
+    await page.screenshot({path: "submitted.png"});
     await browser.close();
   })();
 }
