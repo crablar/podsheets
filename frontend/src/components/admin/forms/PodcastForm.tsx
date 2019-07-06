@@ -172,7 +172,7 @@ export default class PodcastForm extends React.Component<IPodcastFormProps, IPod
                         <Form.Field inline required>
                             <label style={styles.formLabel}>Categories</label>
                             <Dropdown
-                                value={this.state.fields.categories.split(",").map(x => x.trim())}
+                                value={this.state.fields.categories ? this.state.fields.categories.split(",").map(x => x.trim()) : null}
                                 placeholder="Technology"
                                 multiple
                                 selection
@@ -330,7 +330,7 @@ export default class PodcastForm extends React.Component<IPodcastFormProps, IPod
 const styles = {
     formLabel: {
         display: "inline-block",
-        width: 80,
+        width: 100,
         maxWidth: "50%",
         textAlign: "left",
         fontSize: "120%" as "120%",
