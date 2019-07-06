@@ -53,7 +53,7 @@ export default class PublishPodcastModal extends React.Component<any, IPublishPo
                     <Form action="#" onSubmit={(e) => e.preventDefault()}>
                         <Form.Button onClick={() => this.setState({ open: true })} style={style.importButton}>
                             Publish Podcast
-                    </Form.Button>
+                        </Form.Button>
                     </Form>
                 }
                 <Modal

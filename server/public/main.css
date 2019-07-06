@@ -80,5 +80,5 @@ input::-webkit-inner-spin-button {
 .ui.selection.dropdown>.delete.icon,
 .ui.selection.dropdown>.dropdown.icon,
 .ui.selection.dropdown>.search.icon {
-    top: auto;
+    top: none;
 }

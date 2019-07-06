@@ -45,6 +45,7 @@ export default class PodcastHomeScreen extends React.Component<IPodcastHomeScree
         this.state = { filter: "all" };
 
     }
+    
     public render() {
         if (this.props.rootState.isAuthenticated) {
             return browserSwitch(
@@ -61,7 +62,7 @@ export default class PodcastHomeScreen extends React.Component<IPodcastHomeScree
                                 message={this.state.message}
                             />
                             <div style={{ display: "flex", flexDirection: "row", width: "75%" }}>
-                                <Header as="h2" style={style.title}>Episodes</Header>
+                                <Header as="h2" style={globalStyles.title}>Episodes</Header>
 
                                 <RSSImportForm
                                     onSubmit={this.onSubmitFeed} />
@@ -232,7 +233,7 @@ export default class PodcastHomeScreen extends React.Component<IPodcastHomeScree
                                 <Grid.Column width={4}>
                                     <Grid.Row textAlign="center">
                                         <h3 style={{ ...style.podsheetsOptionsText, marginBottom: 5 }}>
-                                            Stats
+                                            Analytics
                                         </h3>
                                     </Grid.Row>
                                     <Grid.Row centered textAlign="center">
@@ -682,13 +683,6 @@ const style = {
     headWrapper: {
         display: "flex",
         width: "75%",
-    },
-    title: {
-        ...globalStyles.text,
-        flex: 1,
-        marginTop: 0,
-        paddingTop: 0,
-        fontWeight: 200,
     },
     buttonGroup: {
         float: "center",

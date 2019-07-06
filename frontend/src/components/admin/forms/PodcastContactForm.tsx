@@ -48,31 +48,8 @@ export default class PodcastContactForm extends React.Component<IPodcastContactF
         return (
             <Segment style={{ width: "75%", paddingLeft: 0 }} basic>
                 <Form onSubmit={this.onSubmit}>
-                    <Header as="h2" style={{ color: colors.mainDark, display: "flex", flexDirection: "row", fontWeight: "200"}}>
+                    <Header as="h2" style={globalStyles.title}>
                         Contact
-                        <div style={style.actionContainer}>
-                            <Popup
-                                trigger={
-                                    <Form.Button
-                                        onClick={(e) => this.onPreview(this.state.fields, e)}
-                                        style={style.actionIcon}
-                                        icon>
-                                        <Icon size="large" name="eye" />
-                                    </Form.Button>}
-                                style={style.tooltip}
-                                basic
-                                size="tiny"
-                                content="Preview" />
-                            <Popup
-                                trigger={
-                                    <Form.Button style={style.actionIcon} icon>
-                                        <Icon size="large" name="save" />
-                                    </Form.Button>}
-                                style={style.tooltip}
-                                basic
-                                size="tiny"
-                                content="Save" />
-                        </div>
                     </Header>
                     <p style={globalStyles.workspaceContentText}>
                         This is the Contact page for your podcast website. Include your information
@@ -120,6 +97,16 @@ export default class PodcastContactForm extends React.Component<IPodcastContactF
                             onChange={this.onChangeInputField}
                             />
                     </Form.Field>
+                    <Button 
+                        onClick={(e) => this.onPreview(this.state.fields, e)} 
+                        style={{ marginTop: '1em', fontWeight: 550, fontSize: '120%', color: 'white', backgroundColor: '#6D75DD'}}>
+                        Preview
+                    </Button>
+                    <Button 
+                        onClick={(e) => this.onSubmit(e)} 
+                        style={{ marginTop: '1em', fontWeight: 550, fontSize: '120%', color: 'black', backgroundColor: '#F4CB10'}}>
+                        Save
+                    </Button>
                 </Form>
                 <Modal modalStyle={style.previewModal} ref="modal" keyboard={(e: any) => this.callback(e)}>
                     <div style={style.previewHeader}>

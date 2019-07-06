@@ -20,7 +20,7 @@ export default class PublicPodcastHomeScreen extends React.Component<IPublicPodc
         const layout = this.props.publicClientState.podcast.layout || "classic";
 
         return (
-            <div style={{ paddingBottom: 30 }}>
+            <div style={{ paddingBottom: 30, minHeight: "100vh" }}>
                 <div style={style.imageWrapper}>
                     <Image
                         style={style.image}

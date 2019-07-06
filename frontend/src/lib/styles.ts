@@ -16,6 +16,14 @@ export const globalStyles = {
         display: "flex",
         flex: 1,
     },
+    title: {
+        cursor: "pointer",
+        textAlign: "left",
+        color: colors.mainDark,
+        whiteSpace: "nowrap",
+        overflow: "hidden" as "hidden",
+        textOverflow: "ellipsis",
+    },
     content: {
         flex: 1,
         padding: 20,

@@ -70,7 +70,7 @@ function getIconProps(value: string) {
 }
 
 const selectThemeOptions = [
-    { key: "dark", value: "dark", text: "Dark", icon: getIconProps("dark") },
+    { key: "darkk", value: "dark", text: "Dark", icon: getIconProps("dark") },
     { key: "silver", value: "silver", text: "Silver", icon: getIconProps("silver") },
     { key: "sky", value: "sky", text: "Sky", icon: getIconProps("sky") },
     { key: "light", value: "light", text: "Light", icon: getIconProps("light") },
@@ -94,31 +94,8 @@ export default class PodcastForm extends React.Component<IPodcastFormProps, IPod
         return (
             <Segment style={{ width: "75%", paddingLeft: 0 }} basic>
                 <Form>
-                    <Header as="h2" style={{ color: colors.mainDark, display: "flex", flexDirection: "row", fontWeight: "200" }}>
-                        <span style={{ position: "absolute", top: 10 }}>Design</span>
-                        <div style={style.actionContainer}>
-                            <Popup
-                                trigger={
-                                    <Form.Button
-                                        onClick={(e) => this.onPreview(this.state.fields, e)}
-                                        style={style.actionIcon}
-                                        icon>
-                                        <Icon size="large" name="eye" />
-                                    </Form.Button>}
-                                style={style.tooltip}
-                                basic
-                                size="tiny"
-                                content="Preview" />
-                            <Popup
-                                trigger={
-                                    <Form.Button onClick={(e) => this.onSubmit(e)} style={style.actionIcon} icon>
-                                        <Icon size="large" name="save" />
-                                    </Form.Button>}
-                                style={style.tooltip}
-                                basic
-                                size="tiny"
-                                content="Save" />
-                        </div>
+                    <Header as="h2" style={globalStyles.title}>
+                        Design
                     </Header>
                     <Form.Field inline required>
                         <label style={style.formLabel}>Theme</label>
@@ -187,6 +164,16 @@ export default class PodcastForm extends React.Component<IPodcastFormProps, IPod
                         </Grid.Row>
                     </Grid>
                     */}
+                    <Button 
+                        onClick={(e) => this.onPreview(this.state.fields, e)} 
+                        style={{ marginTop: '1em', fontWeight: 550, fontSize: '120%', color: 'white', backgroundColor: '#6D75DD'}}>
+                        Preview
+                    </Button>
+                    <Button 
+                        onClick={(e) => this.onSubmit(e)} 
+                        style={{ marginTop: '1em', fontWeight: 550, fontSize: '120%', color: 'black', backgroundColor: '#F4CB10'}}>
+                        Save
+                    </Button>
                 </Form>
                 <Modal modalStyle={style.previewModal} ref="modal" keyboard={(e: any) => this.callback(e)}>
                     <div style={style.previewHeader}>

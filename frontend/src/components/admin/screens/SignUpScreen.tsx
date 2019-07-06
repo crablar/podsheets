@@ -55,7 +55,7 @@ export default class SignUpScreen extends React.Component<ISignUpScreenProps, IS
                         <Button
                             positive
                             icon="checkmark"
-                            labelPosition="right"
+                            labelPosition="left"
                             content="Agree"
                             onClick={() => this.close()} />
                     </Modal.Actions>

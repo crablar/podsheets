@@ -21,6 +21,8 @@ export default class Footer extends React.Component<IPublicPodcastFooterProps, {
                 padding: 25,
                 textAlign: "center",
                 color: "gray",
+                position: "relative",
+                bottom: 0
             }} >
                 Copyright © 2017 Podsheets
             </Container>

@@ -121,7 +121,7 @@ export default class PodcastSubscriptionForm extends React.Component<IPodcastSub
         const usedStorage = _.get(this.props, "rootState.podcast.usedStorage", 0).toFixed(2);
         return (
             <Segment style={{ width: "75%", color: colors.mainDark, paddingLeft: 0 }} basic>
-                <Header as="h2" style={{ color: colors.mainDark, display: "flex", flexDirection: "row", fontWeight: "200" }}>
+                <Header as="h2" style={style.title}>
                     Subscription
                         <div style={style.radioContainer}>
                         <Button
@@ -288,6 +288,14 @@ export default class PodcastSubscriptionForm extends React.Component<IPodcastSub
 }
 
 const style = {
+    title: {
+        cursor: "pointer",
+        textAlign: "left",
+        ...globalStyles.text,
+        whiteSpace: "nowrap",
+        overflow: "hidden" as "hidden",
+        textOverflow: "ellipsis",
+    },
     formInput: {
         minWidth: "50%",
         maxWidth: 250,

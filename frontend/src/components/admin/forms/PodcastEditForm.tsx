@@ -118,14 +118,14 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
             <Segment style={{ width: "75%", paddingBottom: 100, paddingLeft: 0 }} basic clearing>
                 {this.renderError()}
                 <Form loading={this.state.uploading}>
-                    <Header as="h2" style={{ color: colors.mainDark, display: "flex", flexDirection: "column", fontWeight: "200" }}>
+                    <Header as="h2" style={globalStyles.title}>
                         Settings
                         <div style={{
                             display: "flex",
                             flex: 1,
                             justifyContent: "center",
                         }}>
-                            <Popup
+                            {/* <Popup
                                 trigger={
                                     <Form.Button onClick={(e) => this.onSubmit(e)} style={styles.actionIcon} icon>
                                         <Icon size="small" name="save" />
@@ -133,7 +133,7 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                                 style={styles.tooltip}
                                 basic
                                 size="tiny"
-                                content="Save" />
+                                content="Save" /> */}
                             <Popup
                                 trigger={
                                     <Form.Button onClick={(e) => this.toggleAddCollab(e)} style={styles.actionIcon} icon>
@@ -182,7 +182,7 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                                 flex: 1,
                                 color: colors.mainDark,
                             }}>
-                                Enable Advertising
+                                {this.state.fields.advertisingEnabled ? 'Disable' : 'Enable'} Advertising
                         </div>
                         </div>
                         :
@@ -217,8 +217,8 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                             type="file"
                             style={styles.hidenInput} />
                         <p style={globalStyles.workspaceContentText}>
-                            *Image must be between 1400 X 1400 and 3000 X 3000
-                            </p>
+                            Image must be between 1400 X 1400 and 3000 X 3000
+                        </p>
                     </p>
                     <div style={{
                         display: "flex",
@@ -230,7 +230,7 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                             color: colors.mainDark,
                             fontSize: "120%",
                             marginBottom: 5,
-                            fontWeight: 300,
+                            fontWeight: 600,
                         }}>RSS</p>
                         <p style={{
                             color: colors.mainDark,
@@ -309,7 +309,7 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                          the iTunes Store only recognizes the first category.
                          </p>
                         <Dropdown
-                            value={this.state.fields.categories.split(",").map(x => x.trim())}
+                            value={this.state.fields.categories ? this.state.fields.categories.split(",").map(x => x.trim()) : null}
                             floating
                             placeholder="Technology"
                             fluid
@@ -334,6 +334,11 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                                 }
                             }} />
                     </Form.Field>
+                    <Button 
+                        onClick={(e) => this.onSubmit(e)} 
+                        style={{ marginTop: '1em', fontWeight: 550, fontSize: '120%', color: 'black', backgroundColor: '#F4CB10'}}>
+                        Save
+                    </Button>
                 </Form>
                 <Modal
                     open={this.state.addCollaboratorModal}
@@ -613,7 +618,7 @@ const styles = {
         textAlign: "left",
         fontSize: "120%" as "120%",
         color: colors.mainDark,
-        fontWeight: 300 as 300,
+        fontWeight: 600,
         marginBottom: 15,
         marginTop: 40,
     },
