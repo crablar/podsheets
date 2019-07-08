@@ -9,6 +9,22 @@ const envVarsSchema = Joi.object({
     .default("development"),
   PORT: Joi.number()
     .default(3001),
+  SESSION_SECRET: Joi.string().required()
+    .description("Secret used to sign the session ID cookie"),
+  MONGODB_URI: Joi.string().required()
+    .description("Mongo DB connection string URI"),
+  GOOGLE_CLIENT_ID: Joi.string().required()
+    .description("Client id of Google app used for authentication"),
+  GOOGLE_CLIENT_SECRET: Joi.string().required()
+    .description("Client secret of Google app used for authentication"),
+  GOOGLE_STORAGE_PROJECT_ID: Joi.string().required()
+    .description("Project ID for storage bucket project"),
+  GOOGLE_STORAGE_CLIENT_EMAIL: Joi.string().required()
+    .description("Service account email for storage bucket project"),
+  GOOGLE_STORAGE_PRIVATE_KEY: Joi.string().required()
+    .description("Private key used for authentication of service account for storage bucket project"),
+  GOOGLE_STORAGE_BUCKET: Joi.string().required()
+    .description("Name of Google storage bucket"),
 }).unknown()
   .required();
 
