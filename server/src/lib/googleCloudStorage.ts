@@ -1,30 +1,30 @@
 import * as request from "request";
 import * as slug from "slug";
+import config from "../config";
 import { logger } from "./logger";
 // tslint:disable-next-line:no-var-requires
 const storage = require("@google-cloud/storage");
 
 const gcs = storage({
-    projectId: process.env.GOOGLE_STORAGE_PROJECT_ID,
+    projectId: config.google.storage.projectID,
     credentials: {
-        client_email: process.env.GOOGLE_STORAGE_CLIENT_EMAIL,
-        // NOTE: Ugly hack for heroku variables (they actually add a \ to the variable string)
-        private_key: process.env.GOOGLE_STORAGE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+        client_email: config.google.storage.clientEmail,
+        private_key: config.google.storage.privateKey,
     },
 });
 
-const bucket = gcs.bucket(process.env.GOOGLE_STORAGE_BUCKET);
+const bucket = gcs.bucket(config.google.storage.bucket);
 
 export function getSignedUrlForUpload(filename: string, contentType: string) {
     // TODO: Validate content types
     return new Promise((resolve, reject) => {
         const file = bucket.file(filename);
-        const config = {
+        const urlConfig = {
             action: "write",
             expires: new Date().getTime() + (1000 * 60 * 10), // 10 minutes from now
             contentType,
         };
-        file.getSignedUrl(config, (err: any, url: string) => {
+        file.getSignedUrl(urlConfig, (err: any, url: string) => {
             if (err) {
                 logger.error("Google Cloud Storage Error: ", err);
                 reject(err);
@@ -37,7 +37,7 @@ export function getSignedUrlForUpload(filename: string, contentType: string) {
 
 export function deleteFile(url: string) {
 
-    const bucketName = process.env.GOOGLE_STORAGE_BUCKET;
+    const bucketName = config.google.storage.bucket;
 
     return new Promise((resolve, reject) => {
         const filename = url.replace(`http://storage.googleapis.com/${bucketName}/`, "");
@@ -80,7 +80,7 @@ export function saveToStorage(attachmentUrl, objectName) {
                 });
             req.pipe(writeStream)
                 .on("finish", () => {
-                    const bucketName = process.env.GOOGLE_STORAGE_BUCKET;
+                    const bucketName = config.google.storage.bucket;
                     const publicFileUrl = `http://storage.googleapis.com/${bucketName}/${secureFilename}`;
                     resolve(publicFileUrl);
                 })

@@ -1,5 +1,6 @@
 import * as express from "express";
 import * as slug from "slug";
+import config from "../config";
 import * as auth from "../lib/auth";
 import { getSignedUrlForUpload } from "../lib/googleCloudStorage";
 import { logger } from "../lib/logger";
@@ -45,7 +46,7 @@ export default (router: express.Router) => {
                 slug.defaults.mode = "rfc3986";
                 const secureFilename = `${new Date().getTime()}/${slug(req.query.filename)}`;
                 const uploadUrl = await getSignedUrlForUpload(secureFilename, req.query.type);
-                const bucket = process.env.GOOGLE_STORAGE_BUCKET;
+                const bucket = config.google.storage.bucket;
                 const publicFileUrl = `http://storage.googleapis.com/${bucket}/${secureFilename}`;
                 res.json({ uploadUrl, publicFileUrl });
             } else {
@@ -60,12 +61,12 @@ export default (router: express.Router) => {
     router.get("/server-config", (req, res) => {
         res.json({
             env: {
-                STRIPE_PUBLISHABLE_KEY: process.env.STRIPE_PUBLISHABLE_KEY,
-                USER_ACCOUNTS_ENABLED: process.env.USER_ACCOUNTS_ENABLED,
-                AUDIO_EDITOR: process.env.AUDIO_EDITOR,
-                AD_PLACEMENT: process.env.AD_PLACEMENT,
-                IMPORT_RSS_ENABLED: process.env.IMPORT_RSS_ENABLED,
-                SUBSCRIPTION_ENABLED: process.env.SUBSCRIPTION_ENABLED,
+                STRIPE_PUBLISHABLE_KEY: config.stripe.publishableKey,
+                USER_ACCOUNTS_ENABLED: config.userAccounts.enabled,
+                AUDIO_EDITOR: config.audioEditor,
+                AD_PLACEMENT: config.adPlacement,
+                IMPORT_RSS_ENABLED: config.importRss.enabled,
+                SUBSCRIPTION_ENABLED: config.subscription.enabled,
             },
         });
     });

@@ -1,3 +1,4 @@
+import config from "../config";
 export const collaboratorHTML = (id: string) => {
     return `
     <!doctype html>
@@ -38,7 +39,7 @@ export const collaboratorHTML = (id: string) => {
   <body class="">
           <div>You have been invited to collaborate on a podcast on Podsheets.</div>
           <p>
-            <a href="${process.env.HOSTNAME + "/email/callback/" + id}">
+            <a href="${config.hostname + "/email/callback/" + id}">
             Accept Invite
             </a>
           </p>

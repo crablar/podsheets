@@ -7,6 +7,7 @@ import * as remote from "remote-file-size";
 import * as slug from "slug";
 import * as urlencode from "urlencode";
 import * as convert from "xml-js";
+import config from "../config";
 import * as auth from "../lib/auth";
 import * as itunes from "../lib/itunes";
 import { logger } from "../lib/logger";
@@ -56,7 +57,7 @@ export default (router: express.Router) => {
             const categories = podcast.categories.split(",").map((value) => {
                 return value.replace(/&(?!#?[a-z0-9]+;)/, "&amp;");
             });
-            const podcastUrl = `${process.env.HOSTNAME}/p/${podcast.slug}/`;
+            const podcastUrl = `${config.hostname}/p/${podcast.slug}/`;
             const firstCategory = categories[0].split("-");
             const mainCategory = firstCategory[0].replace(" ", "");
             // tslint:disable-next-line:max-line-length
@@ -131,7 +132,7 @@ export default (router: express.Router) => {
             const currentPodcast = await Podcast.findOne({ slug: req.params.podcast_slug }).exec();
             if (!currentPodcast) { return res.sendStatus(404); }
             const podcastOwner = await User.findById(currentPodcast.owner).exec();
-            const podcastUrl = `${process.env.HOSTNAME}/p/${currentPodcast.slug}/`;
+            const podcastUrl = `${config.hostname}/p/${currentPodcast.slug}/`;
             const now = new Date();
             const episodesDB = await Episode
                 .find({
@@ -180,7 +181,7 @@ export default (router: express.Router) => {
             const currentPodcast = await Podcast.findOne({ slug: req.params.podcast_slug }).exec();
             if (!currentPodcast) { return res.sendStatus(404); }
             const podcastOwner = await User.findById(currentPodcast.owner).exec();
-            const podcastUrl = `${process.env.HOSTNAME}/p/${currentPodcast.slug}/`;
+            const podcastUrl = `${config.hostname}/p/${currentPodcast.slug}/`;
             const episodesDB = await Episode
                 .find({
                     podcast: currentPodcast._id, preview: true,
@@ -234,7 +235,7 @@ export default (router: express.Router) => {
             const currentPodcast = await Podcast.findOne({ slug: req.params.podcast_slug }).exec();
             if (!currentPodcast) { return res.sendStatus(404); }
             const podcastOwner = await User.findById(currentPodcast.owner).exec();
-            const podcastUrl = `${process.env.HOSTNAME}/p/${currentPodcast.slug}/`;
+            const podcastUrl = `${config.hostname}/p/${currentPodcast.slug}/`;
             const episodesDB = await Episode
                 .find({
                     podcast: currentPodcast._id, preview: false,

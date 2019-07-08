@@ -1,4 +1,5 @@
 import * as puppeteer from "puppeteer";
+import config from "../config";
 
 export async function addItunesPodcast(rssFeedUrl) {
   (async() => {
@@ -14,13 +15,13 @@ export async function addItunesPodcast(rssFeedUrl) {
     const frames = await page.frames();
     const authFrame = frames.find(f => f.name() === "aid-auth-widget-iFrame");
     const usernameField = await authFrame.$("#account_name_text_field");
-    await usernameField.type(process.env.ITUNES_USER);
+    await usernameField.type(config.itunes.username);
     let signInButton = await authFrame.$("#sign-in");
     signInButton.click();
     await page.waitFor(2000);
 
     const passwordField = await authFrame.$("#password_text_field");
-    await passwordField.type(process.env.ITUNES_PASS);
+    await passwordField.type(config.itunes.password);
     signInButton = await authFrame.$("#sign-in");
     signInButton.click();
     await page.waitFor(2000);

@@ -1,10 +1,11 @@
 import { OAuth2Strategy as Strategy } from "passport-google-oauth";
+import config from "../config";
 import User from "../models/user";
 
 export default new Strategy({
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: process.env.GOOGLE_CALLBACK_URL,
+    clientID: config.google.client.id,
+    clientSecret: config.google.client.secret,
+    callbackURL: config.google.callbackURL,
 }, (accessToken, refreshToken, profile, done) => {
     process.nextTick(() => {
         if (!profile || !profile.emails || !profile.emails.length) {
