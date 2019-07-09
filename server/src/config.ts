@@ -25,6 +25,32 @@ const envVarsSchema = Joi.object({
     .description("Private key used for authentication of service account for storage bucket project"),
   GOOGLE_STORAGE_BUCKET: Joi.string().required()
     .description("Name of Google storage bucket"),
+  FACEBOOK_CLIENT_ID: Joi.string().required()
+    .description("Client ID for Facebook OAuth authentication"),
+  FACEBOOK_CLIENT_SECRET: Joi.string().required()
+    .description("Client secret for Facebook OAuth authentication"),
+  FACEBOOK_CALLBACK_URL: Joi.string().required()
+    .description("OAuth callback url for Facebook authentication"),
+  SUBSCRIPTION_ENABLED: Joi.boolean().required()
+    .description("Boolean setting whether or not to enable subscriptions"),
+  STRIPE_PUBLISHABLE_KEY: Joi.string().required()
+    .description("Identify the Stripe account"),
+  STRIPE_SECRET_KEY: Joi.string().required()
+    .description("Stripe API key used to make authenticated requests"),
+  ITUNES_USERNAME: Joi.string()
+    .description("Username associated with the iTunes account used to create podcasts"),
+  ITUNES_PASSWORD: Joi.string()
+    .description("Password associated with the iTunes account used to create podcasts"),
+  HOSTNAME: Joi.string().required()
+    .description("Hostname used for front end routing"),
+  USER_ACCOUNTS_ENABLED: Joi.string().required()
+    .description("Flag to allow sign in with Facebook and Google services"),
+  AUDIO_EDITOR: Joi.boolean()
+    .description("Flag to enable audio editor in the front end"),
+  AD_PLACEMENT: Joi.boolean()
+    .description("Flag to enable dynamic add placement in the front end"),
+  IMPORT_RSS_ENABLED: Joi.boolean()
+    .description("Flag to enable importing RSS feeds in the front end"),
 }).unknown()
   .required();
 
