@@ -109,6 +109,9 @@ export default class PodcastSubscriptionForm extends React.Component<IPodcastSub
                 case storage.advanced:
                     planPrice = price.advanced;
                     break;
+                case storage.social:
+                    planPrice = price.social;
+                    break;
             }
         }
 
@@ -119,6 +122,7 @@ export default class PodcastSubscriptionForm extends React.Component<IPodcastSub
         const now = (new Date()).getTime();
         const storageLimit = _.get(this.props, "rootState.podcast.subscription.storageLimit", storage.free);
         const usedStorage = _.get(this.props, "rootState.podcast.usedStorage", 0).toFixed(2);
+        
         return (
             <Segment style={{ width: "75%", color: colors.mainDark, paddingLeft: 0 }} basic>
                 <Header as="h2" style={style.title}>
@@ -259,6 +263,27 @@ export default class PodcastSubscriptionForm extends React.Component<IPodcastSub
                                     onChange={this.onChangeStorageField}
                                 />
                                 <span>$20 per month</span>
+                            </div>
+                        </div>
+                        <div onClick={() => {
+                            this.onChangeStorageField(null, { value: storage.social });
+                        }} style={style.planContainer}>
+                            <Header style={style.planHeader}>Social</Header>
+                            <Header
+                                style={style.planDescription}
+                                as="h4">{storage.social} MB of storage per month & Social Network</Header>
+                            <Header style={style.planDescription} as="h4">
+                                Good for uploading weekly 60 minute episodes & spinning up social network
+                        </Header>
+                            <div style={style.radioContainer}>
+                                <Radio
+                                    style={style.radioButton}
+                                    name="radioGroup"
+                                    value={storage.social}
+                                    checked={this.state.fields.storageLimit === storage.social || planPrice === price.social}
+                                    onChange={this.onChangeStorageField}
+                                />
+                                <span>$30 per month</span>
                             </div>
                         </div>
                     </div>

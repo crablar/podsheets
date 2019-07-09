@@ -3,12 +3,14 @@ export const storage = {
     free: 10000,
     basic: 200,
     advanced: 500,
+    social: 1000
 };
 
 export const price = {
     free: 0,
     basic: 5,
     advanced: 20,
+    social: 30
 };
 
 export const allowedItunesCategories: { [key: string]: string[] } = {
