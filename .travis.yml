@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - "6.10.2"
+cache:
+  directories:
+  - node_modules
+git:
+  depth: 3
+stages:
+  - build
+jobs:
+  include:
+    - stage: build
+      script:
+        - cd frontend
+        - npm install -g yarn
+        - yarn
+        - yarn build
