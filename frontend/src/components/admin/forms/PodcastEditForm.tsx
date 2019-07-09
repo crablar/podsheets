@@ -4,13 +4,14 @@ import * as _ from "lodash";
 import { inject, observer } from "mobx-react";
 import * as React from "react";
 import {
-    Button, Divider, Dropdown, Form, Header, Icon, Image, Input, Message, Modal, Popup, Radio, Reveal, Segment,
+    Button, Dropdown, Form, Header, Icon, Image, Input, Message, Modal, Popup, Radio, Reveal, Segment,
 } from "semantic-ui-react";
 import { allowedItunesCategories } from "../../../lib/constants";
 import { IPodcast } from "../../../lib/interfaces";
 import { colors, globalStyles } from "../../../lib/styles";
 import { RootState } from "../../../state/RootState";
 import AvatarEditor from "../generic/AvatarEditor";
+import { Link } from "react-router-dom";
 
 interface IPodcastEditFormProps {
     onSubmit: (formState: IPodcastEditFormFields, noRedirect: boolean) => Promise<void>;
@@ -47,6 +48,7 @@ export interface IPodcastEditFormState {
     removedCollaborators: any[];
     loadingCollaborators: boolean;
     isCropping: boolean;
+    isSocialSubscriptionActive: boolean;
     file?: any;
 }
 function getBaseUrl() {
@@ -80,6 +82,7 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
         removedCollaborators: [],
         loadingCollaborators: false,
         isCropping: false,
+        isSocialSubscriptionActive: false
     };
 
     constructor(props: IPodcastEditFormProps) {
@@ -107,6 +110,7 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                 loadingCollaborators: false,
                 removedCollaborators: [],
                 isCropping: false,
+                isSocialSubscriptionActive: props.currentPodcast.subscription.storageLimit === 1000
             };
         }
     }
@@ -125,15 +129,6 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                             flex: 1,
                             justifyContent: "center",
                         }}>
-                            {/* <Popup
-                                trigger={
-                                    <Form.Button onClick={(e) => this.onSubmit(e)} style={styles.actionIcon} icon>
-                                        <Icon size="small" name="save" />
-                                    </Form.Button>}
-                                style={styles.tooltip}
-                                basic
-                                size="tiny"
-                                content="Save" /> */}
                             <Popup
                                 trigger={
                                     <Form.Button onClick={(e) => this.toggleAddCollab(e)} style={styles.actionIcon} icon>
@@ -159,7 +154,10 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                             }
                         </div>
                     </Header>
-                    {this.props.rootState.env.AD_PLACEMENT === "true" ?
+                    <p style={{ ...globalStyles.workspaceContentText, marginBottom: '2em' }}>
+                        The podcast information on this page will publish to iTunes and Google Play.
+                    </p>
+                    {/* {this.props.rootState.env.AD_PLACEMENT === "true" ?
                         <div style={{
                             display: "flex",
                             flexDirection: "row",
@@ -187,10 +185,14 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                         </div>
                         :
                         null
-                    }
-                    <p style={globalStyles.workspaceContentText}>
-                        The podcast information on this page will publish to iTunes and Google Play.
-                    </p>
+                    } */}
+                    
+                    <p style={{
+                            color: colors.mainDark,
+                            fontSize: "120%",
+                            marginBottom: 5,
+                            fontWeight: 600,
+                        }}>Cover Art</p>
                     <p>
                         <div style={{ display: "flex", flexDirection: "row" }}>
                             <div style={styles.imagePreview} >
@@ -211,6 +213,7 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                                 </Reveal>
                             </div>
                         </div>
+                        
                         <input
                             ref="podcastImgRef"
                             onChange={this.onFileInput}
@@ -232,10 +235,13 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                             marginBottom: 5,
                             fontWeight: 600,
                         }}>RSS</p>
-                        <p style={{
+                        <a 
+                            href={getBaseUrl() + `p/${this.props.rootState.podcast.slug}/rss.xml`} 
+                            target="_blank"
+                            style={{
                             color: colors.mainDark,
                             fontSize: "120%",
-                        }}>{getBaseUrl() + `p/${this.props.rootState.podcast.slug}/rss.xml`}</p>
+                        }}>{getBaseUrl() + `p/${this.props.rootState.podcast.slug}/rss.xml`}</a>
                     </div>
                     <Form.Field className="formInput" required>
                         <div style={styles.formLabel}>Title</div>
@@ -334,9 +340,16 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                                 }
                             }} />
                     </Form.Field>
+                    <Form.Field className="formInput" required>
+                        <div style={styles.formLabel}>Social</div>
+                        {this.state.isSocialSubscriptionActive ?
+                            <p>Toggle switch to enable social network</p> :
+                            <p style={globalStyles.workspaceContentText}>You must be <Link to={{ pathname: "/subscription" }}>subscribed</Link> to the social plan to spin up a social network</p>}
+                        <Radio disabled={!this.state.isSocialSubscriptionActive} toggle />
+                    </Form.Field>
                     <Button 
                         onClick={(e) => this.onSubmit(e)} 
-                        style={{ marginTop: '1em', fontWeight: 550, fontSize: '120%', color: 'black', backgroundColor: '#F4CB10'}}>
+                        style={{...styles.buttonStyle, backgroundColor: '#F4CB10'}}>
                         Save
                     </Button>
                 </Form>
@@ -612,6 +625,12 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
 }
 
 const styles = {
+    buttonStyle: { 
+        marginTop: '1em', 
+        fontWeight: 550, 
+        fontSize: '120%', 
+        color: 'black', 
+    },
     formLabel: {
         display: "flex",
         minWidth: 80,
