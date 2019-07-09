@@ -20,6 +20,8 @@ interface IPublicPodcastHeaderProps { publicClientState?: PublicClientState; }
 export default class Header extends React.Component<IPublicPodcastHeaderProps, {}> {
     public render() {
 
+        const { linkStyle } = styles;
+
         const facebook = this.props.publicClientState.podcast.contactFacebook;
         const twitter = this.props.publicClientState.podcast.contactTwitter;
 
@@ -31,18 +33,18 @@ export default class Header extends React.Component<IPublicPodcastHeaderProps, {
                 padding: 10,
             }} borderless>
                 <Menu.Item>
-                    <Link style={{ color: "black" }} to="/">Home</Link>
+                    <Link style={linkStyle} to="/">Home</Link>
                 </Menu.Item>
                 {!!about ?
                     <Menu.Item>
-                        <Link style={{ color: "black" }} to="/about">About</Link>
+                        <Link style={linkStyle} to="/about">About</Link>
                     </Menu.Item>
                     :
                     null
                 }
                 {!!contactMessage ?
                     <Menu.Item>
-                        <Link style={{ color: "black" }} to="/contact">Contact</Link>
+                        <Link style={linkStyle} to="/contact">Contact</Link>
                     </Menu.Item>
                     :
                     null
@@ -50,14 +52,14 @@ export default class Header extends React.Component<IPublicPodcastHeaderProps, {
                 <Menu.Menu position="right">
                     <Menu.Item>
                         {twitter ?
-                            <a href={addhttp(twitter)} target="_blank">
+                            <a style={{ margin: '0 0.5em' }} href={addhttp(twitter)} target="_blank">
                                 <Icon color="black" name="twitter" size="large" />
                             </a>
                             :
                             null
                         }
                         {facebook ?
-                            <a href={addhttp(facebook)} target="_blank">
+                            <a style={{ margin: '0 0.5em' }} href={addhttp(facebook)} target="_blank">
                                 <Icon color="black" name="facebook" size="large" />
                             </a>
                             :
@@ -67,5 +69,13 @@ export default class Header extends React.Component<IPublicPodcastHeaderProps, {
                 </Menu.Menu>
             </Menu>
         );
+    }
+}
+
+const styles = {
+    linkStyle: {
+        color: 'black',
+        fontWeight: '500',
+        fontSize: "120%"
     }
 }

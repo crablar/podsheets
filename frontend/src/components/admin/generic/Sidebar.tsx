@@ -1,7 +1,7 @@
 import { inject, observer } from "mobx-react";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
-import { Icon, Image, Menu, Segment, Sidebar as SSidebar } from "semantic-ui-react";
+import { Icon, Image, Menu } from "semantic-ui-react";
 import { IPodcast } from "../../../lib/interfaces";
 import { colors, globalStyles } from "../../../lib/styles";
 import { RootState } from "../../../state/RootState";
@@ -30,7 +30,7 @@ export default function Sidebar(props: ISidebarProps) {
                             <NavLink to="/stats" activeStyle={style.activeItem}
                                 style={style.submenuItem}>
                                 <Icon name="line chart" size="large" style={style.navIcon} />
-                                Stats
+                                Analytics
                             </NavLink>
                         </Menu.Item>
                         <Menu.Item style={style.menuItem}>
@@ -133,14 +133,13 @@ export default function Sidebar(props: ISidebarProps) {
             <div style={{
                 position: "absolute" as "absolute",
                 bottom: 10,
-                left: 0,
                 color: colors.mainDark,
                 textAlign: "center",
                 width: "11rem",
-                fontSize: "80%",
+                fontSize: "85%",
             }}>
                 Copyright © 2017 Podsheets
-                </div>
+            </div>
         </nav>
     );
 }
@@ -149,6 +148,9 @@ const style = {
     sidebarWrapper: {
         flex: "0 0 12em",
         minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
         position: "relative" as "relative",
     },
     sidebar: {
@@ -156,6 +158,7 @@ const style = {
         border: "none",
         minHeight: "100%",
         marginBottom: 0,
+        width: "15rem"
     },
     menuItem: {
         padding: 0,

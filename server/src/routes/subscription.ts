@@ -38,7 +38,21 @@ async function getSelectedPodcast(userId) {
     }
 }
 
-const basicPlan = stripe.plans.create({
+const getPlanId = (storageAmount) => {
+    switch (storageAmount) {
+        case 200:
+            return "basic-monthly";
+        case 500:
+            return "advanced-monthly";
+        case 1000:
+            return "social-monthly";
+    }
+};
+
+/* Create Stripe Plans */
+
+// Basic Plan
+stripe.plans.create({
     name: "Basic Plan",
     id: "basic-monthly",
     interval: "month",
@@ -48,14 +62,26 @@ const basicPlan = stripe.plans.create({
     // asynchronously called
 });
 
-const advancedPlan = stripe.plans.create({
-    name: "Basic Plan",
+// Advanced Plan
+stripe.plans.create({
+    name: "Advanced Plan",
     id: "advanced-monthly",
     interval: "month",
     currency: "usd",
     amount: 2000,
 }, function (err, plan) {
     // asynchronously called
+});
+
+// Social Plan
+stripe.plans.create({
+    name: "Social Plan",
+    id: "social-monthly",
+    interval: "month",
+    currency: "usd",
+    amount: 3000,
+}, (err, plan) => {
+    return;
 });
 
 export default (router: express.Router) => {
@@ -82,7 +108,7 @@ export default (router: express.Router) => {
                 .then(customer =>
                     stripe.subscriptions.create({
                         customer: customer.id,
-                        plan: req.body.storageLimit === 200 ? "basic-monthly" : "advanced-monthly",
+                        plan: getPlanId(req.body.storageLimit),
                     }, function (err, subscription) {
                         const fields = {
                             subscription: {
@@ -102,7 +128,7 @@ export default (router: express.Router) => {
         } else {
             // We have an active subscription which needs to be updated
             stripe.subscriptions.update((currentPodcast.subscription as any).id, {
-                plan: req.body.storageLimit === 200 ? "basic-monthly" : "advanced-monthly",
+                plan: getPlanId(req.body.storageLimit),
             }, function (err, subscription) {
 
                 const fields = {
