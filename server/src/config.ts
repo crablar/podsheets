@@ -31,7 +31,7 @@ const envVarsSchema = Joi.object({
     .description("Client secret for Facebook OAuth authentication"),
   FACEBOOK_CALLBACK_URL: Joi.string().required()
     .description("OAuth callback url for Facebook authentication"),
-  SUBSCRIPTION_ENABLED: Joi.boolean().required()
+  SUBSCRIPTION_ENABLED: Joi.boolean()
     .description("Boolean setting whether or not to enable subscriptions"),
   STRIPE_PUBLISHABLE_KEY: Joi.string().required()
     .description("Identify the Stripe account"),
