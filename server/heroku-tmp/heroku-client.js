@@ -11,10 +11,11 @@ const mongoDatabaseName = mongoHost.substring(mongoHost.lastIndexOf('/') + 1, mo
 function createApp() {
   const payload = {
     body: {
-      name: `podsheets-social-${uuid().slice(0, 8)}`
+      name: `podsheets-social-${uuid().slice(0, 8)}`,
+      team: 'podsheets'
     }
   }
-  return heroku.post('/apps', payload)
+  return heroku.post('/teams/apps', payload)
 }
 
 function getPipelines() {
@@ -137,11 +138,11 @@ switch (process.argv[2]) {
     createApp().then(app => {
       appName = app.name;
       console.log('App created, creating pipeline coupling...')
-      createpipelineCoupling(app.id).then(coupling => {
+      return createpipelineCoupling(app.id).then(coupling => {
         console.log('App coupled to pipeline, updating config...')
-        updateConfigVars(app.name).then(patchedConfig => {
+        return updateConfigVars(app.name).then(patchedConfig => {
           console.log('Config updated, initiating build...')
-          createBuild(appName).then(build => {
+          return createBuild(appName).then(build => {
             console.log('Build initiated, getting build log...')
             fs.writeFileSync('./output_stream_url', build.output_stream_url);
           })
