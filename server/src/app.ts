@@ -9,6 +9,7 @@ import * as mongoose from "mongoose";
 import * as morgan from "morgan";
 import * as passport from "passport";
 import * as path from "path";
+import config from "./config";
 import * as auth from "./lib/auth";
 import { stream } from "./lib/logger";
 import addAuthRoutes from "./routes/auth";
@@ -19,7 +20,7 @@ import addPodcastsRoutes from "./routes/podcasts";
 
 import addSubscriptionRoutes, { stripeWebhook } from "./routes/subscription";
 (mongoose as any).Promise = Promise;
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(config.mongo.uri);
 
 const MongoStore = connectMongo(session);
 const app = express();
@@ -30,14 +31,14 @@ app.set("views", "views");
 app.set("view engine", "html");
 app.set("x-powered-by", false);
 
-app.use("/", httpsRedirect(process.env.NODE_ENV === "production" ? true : false));
+app.use("/", httpsRedirect(config.env === "production" ? true : false));
 app.use(cors());
 
 app.use(morgan("dev", { stream }));
 app.use(express.static("public"));
 
 app.use(session({
-    secret: process.env.SESSION_SECRET,
+    secret: config.session.secret,
     resave: true,
     saveUninitialized: true,
     store: new MongoStore({ mongooseConnection: mongoose.connection }),

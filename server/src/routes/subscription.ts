@@ -4,6 +4,7 @@ import { Types } from "mongoose";
 import * as PodcastRSS from "podcast";
 import * as stripePackage from "stripe";
 import * as convert from "xml-js";
+import config from "../config";
 import * as auth from "../lib/auth";
 import { logger } from "../lib/logger";
 import Analytic from "../models/analytic";
@@ -11,7 +12,7 @@ import Episode, { IEpisode } from "../models/episode";
 import Podcast, { IPodcast } from "../models/podcast";
 import User, { IUser } from "../models/user";
 
-const stripe = stripePackage(process.env.STRIPE_SECRET_KEY);
+const stripe = stripePackage(config.stripe.secretKey);
 
 async function getSelectedPodcast(userId) {
     const podcasts = await Podcast.find({ owner: userId });

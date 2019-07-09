@@ -1,10 +1,11 @@
 import { Strategy } from "passport-facebook";
+import config from "../config";
 import User from "../models/user";
 
 export default new Strategy({
-    clientID: process.env.FACEBOOK_CLIENT_ID,
-    clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-    callbackURL: process.env.FACEBOOK_CALLBACK_URL,
+    clientID: config.facebook.client.id,
+    clientSecret: config.facebook.client.secret,
+    callbackURL: config.facebook.callbackURL,
     profileFields: ["id", "displayName", "emails", "name"],
 }, (accessToken, refreshToken, profile, done) => {
     process.nextTick(() => {

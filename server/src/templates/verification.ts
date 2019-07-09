@@ -1,3 +1,4 @@
+import config from "../config";
 export const verificationHTML = (id: string) => {
     return `
     <!doctype html>
@@ -36,7 +37,7 @@ export const verificationHTML = (id: string) => {
     </style>
   </head>
   <body class="">
-            <a href="${process.env.HOSTNAME + "/email/callback/" + id}">
+            <a href="${config.hostname + "/email/callback/" + id}">
             Verify E-MAIL
             </a>
   </body>

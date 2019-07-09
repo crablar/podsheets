@@ -1,5 +1,6 @@
 import { Document, model, Schema } from "mongoose";
 import * as slug from "slug";
+import config from "../config";
 
 export interface IPodcast extends Document {
     title: string;
@@ -56,7 +57,7 @@ const PodcastSchema = new Schema({
     usedStorage: { type: Number, required: false, default: 0 },
     storageReset: { type: Date, required: false, default: new Date()},
     advertisingEnabled: { type: Boolean, default: false },
-    subscriptionEnabled: {type: String, default: process.env.SUBSCRIPTION_ENABLED},
+    subscriptionEnabled: {type: String, default: config.subscription.enabled},
 }, { timestamps: true });
 
 PodcastSchema.pre("findOneAndUpdate", function (next) {
