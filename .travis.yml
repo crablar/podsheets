@@ -11,8 +11,16 @@ stages:
 jobs:
   include:
     - stage: build
+      name: "Build frontend"
       script:
         - cd frontend
+        - npm install -g yarn
+        - yarn
+        - yarn build
+    - stage: build
+      name: "Build backend"
+      script:
+        - cd server
         - npm install -g yarn
         - yarn
         - yarn build
