@@ -29,6 +29,7 @@ export interface IPodcast extends Document {
     subscription?: object;
     importProgress?: object;
     advertisingEnabled?: boolean;
+    socialNetEnabled?: boolean;
     subscriptionEnabled?: string;
 }
 
@@ -57,6 +58,7 @@ const PodcastSchema = new Schema({
     usedStorage: { type: Number, required: false, default: 0 },
     storageReset: { type: Date, required: false, default: new Date()},
     advertisingEnabled: { type: Boolean, default: false },
+    socialNetEnabled: { type: Boolean, default: false },
     subscriptionEnabled: {type: String, default: config.subscription.enabled},
 }, { timestamps: true });
 

@@ -6,6 +6,7 @@
         "outDir": "build",
         "rootDir": "src",
         "lib": ["es2015"],
+        "allowJs": true,
         "sourceMap": true,
         "experimentalDecorators": true,
         "removeComments": false,

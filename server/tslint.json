@@ -3,10 +3,15 @@
   "rules": {
     "curly": true,
     "arrow-parens": false,
+    "allowJs": true,
     "only-arrow-functions": [false],
     "object-literal-sort-keys": false,
     "variable-name": [true, "ban-keywords", "allow-leading-underscore"],
-    "space-before-function-paren": false
+    "space-before-function-paren": false,
+    "ordered-imports": [true, {
+      "import-sources-order": "any",
+      "named-imports-order": "case-insensitive"
+    }]
   },
   "jsRules": { "curly": true },
   "rulesDirectory": []

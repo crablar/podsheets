@@ -30,6 +30,7 @@ export interface IPodcast {
     subscription?: any;
     importProgress?: object;
     advertisingEnabled?: boolean;
+    socialNetEnabled?: boolean;
     subscriptionEnabled?: string;
 }
 

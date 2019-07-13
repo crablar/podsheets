@@ -32,6 +32,7 @@ export interface IPodcastEditFormFields {
     imageUrl: string;
     email: string;
     advertisingEnabled: boolean;
+    socialNetEnabled: boolean;
 }
 
 export interface IPodcastEditFormState {
@@ -49,6 +50,7 @@ export interface IPodcastEditFormState {
     loadingCollaborators: boolean;
     isCropping: boolean;
     isSocialSubscriptionActive: boolean;
+    socialNetStatusChange: boolean;
     file?: any;
 }
 function getBaseUrl() {
@@ -75,21 +77,22 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
         imagePreviewUrl: null,
         error: null,
         categoryWarning: null,
-        fields: { title: "", subtitle: "", author: "", keywords: "", categories: "", imageUrl: "", email: "", advertisingEnabled: false },
+        fields: { title: "", subtitle: "", author: "", keywords: "", categories: "", imageUrl: "", email: "", advertisingEnabled: false, socialNetEnabled: false },
         addCollaboratorModal: false,
         removeCollaboratorModal: false,
         collaborators: [],
         removedCollaborators: [],
         loadingCollaborators: false,
         isCropping: false,
-        isSocialSubscriptionActive: false
+        isSocialSubscriptionActive: false,
+        socialNetStatusChange: false
     };
 
     constructor(props: IPodcastEditFormProps) {
         super();
         if (props.currentPodcast) {
             const userEmail = _.get(props, "rootState.me.email", "");
-            const { title, subtitle, author, keywords, categories, imageUrl, email, advertisingEnabled } = props.currentPodcast;
+            const { title, subtitle, author, keywords, categories, imageUrl, email, advertisingEnabled, socialNetEnabled } = props.currentPodcast;
             this.state = {
                 fields: {
                     title,
@@ -100,6 +103,7 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                     imageUrl,
                     email: (email || userEmail || ""),
                     advertisingEnabled: advertisingEnabled || false,
+                    socialNetEnabled: socialNetEnabled || false,
                 },
                 uploading: false,
                 imagePreviewUrl: null,
@@ -110,6 +114,7 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                 loadingCollaborators: false,
                 removedCollaborators: [],
                 isCropping: false,
+                socialNetStatusChange: false,
                 isSocialSubscriptionActive: props.currentPodcast.subscription.storageLimit === 1000
             };
         }
@@ -343,9 +348,37 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                     <Form.Field className="formInput" required>
                         <div style={styles.formLabel}>Social</div>
                         {this.state.isSocialSubscriptionActive ?
-                            <p>Toggle switch to enable social network</p> :
+                            <p>Click button to {this.state.fields.socialNetEnabled ? 'disable' : 'enable'} social network and hit save</p> :
                             <p style={globalStyles.workspaceContentText}>You must be <Link to={{ pathname: "/subscription" }}>subscribed</Link> to the social plan to spin up a social network</p>}
-                        <Radio disabled={!this.state.isSocialSubscriptionActive} toggle />
+                        {/* <Radio 
+                            disabled={!this.state.isSocialSubscriptionActive} 
+                            toggle
+                            onClick={(e) => {
+                                const fields = this.state.fields;
+                                this.setState({
+                                    fields: {
+                                        ...fields,
+                                        socialNetEnabled: !fields.socialNetEnabled,
+                                    },
+                                });
+                            }}
+                            checked={this.state.fields.socialNetEnabled}
+                            /> */}
+                            <Button 
+                                disabled={!this.state.isSocialSubscriptionActive}
+                                style={{ backgroundColor: this.state.fields.socialNetEnabled ? '#B55B4A' : '#66B54A', color: 'white' }}
+                                onClick={(e) => {
+                                    const fields = this.state.fields;
+                                    this.setState({
+                                        fields: {
+                                            ...fields,
+                                            socialNetEnabled: !fields.socialNetEnabled,
+                                        },
+                                        socialNetStatusChange: true
+                                    });
+                                }}>
+                                {this.state.fields.socialNetEnabled ? 'Disable' : 'Enable'} Social Network
+                            </Button>
                     </Form.Field>
                     <Button 
                         onClick={(e) => this.onSubmit(e)} 
@@ -591,7 +624,7 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
     @autobind
     protected async onSubmit(e: any) {
         e.preventDefault();
-        const fields = JSON.parse(JSON.stringify(this.state.fields));
+        const fields = JSON.parse(JSON.stringify({...this.state.fields, socialNetStatusChange: this.state.socialNetStatusChange}));
         if (!fields.email) {
             const userEmail = _.get(this.props, "rootState.me.email", "");
             fields.email = userEmail;

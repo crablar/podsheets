@@ -11,10 +11,12 @@ const mongoDatabaseName = mongoHost.substring(mongoHost.lastIndexOf('/') + 1, mo
 function createApp() {
   const payload = {
     body: {
-      name: `podsheets-social-${uuid().slice(0, 8)}`
+      //TODO: Remove test
+      name: `podsheets-social-test-${uuid().slice(0, 8)}`,
+      team: 'podsheets'
     }
   }
-  return heroku.post('/apps', payload)
+  return heroku.post('/teams/apps', payload)
 }
 
 function getPipelines() {
@@ -82,7 +84,7 @@ function updateConfigVars(appName) {
         input: fs.createReadStream('.env'),
         terminal: false
     }).on('line', function(line) {
-      l = line.split('=')
+      const l = line.split('=')
       body[l[0]] = l[1]
     }).on('close', function(){
       body.MONGO_COLLECTION_PREFIX = appName;
@@ -134,24 +136,28 @@ switch (process.argv[2]) {
   case 'deploy':
     var appName;
     console.log('Creating app...')
-    createApp().then(app => {
-      appName = app.name;
-      console.log('App created, creating pipeline coupling...')
-      createpipelineCoupling(app.id).then(coupling => {
-        console.log('App coupled to pipeline, updating config...')
-        updateConfigVars(app.name).then(patchedConfig => {
-          console.log('Config updated, initiating build...')
-          createBuild(appName).then(build => {
-            console.log('Build initiated, getting build log...')
-            fs.writeFileSync('./output_stream_url', build.output_stream_url);
-          })
-        })
-      })
-    })
-    .catch(e => {
-      console.log(e)
-    })
+    buildSocialNet()
    break;
   default:
     console.log('no args')
+}
+
+export const buildSocialNet = () => {
+  createApp().then(app => {
+    appName = app.name;
+    console.log('App created, creating pipeline coupling...')
+    createpipelineCoupling(app.id).then(coupling => {
+      console.log('App coupled to pipeline, updating config...')
+      updateConfigVars(app.name).then(patchedConfig => {
+        console.log('Config updated, initiating build...')
+        createBuild(appName).then(build => {
+          console.log('Build initiated, getting build log...')
+          fs.writeFileSync('./output_stream_url', build.output_stream_url);
+        })
+      })
+    })
+  })
+  .catch(e => {
+    console.log('Error', e)
+  });
 }

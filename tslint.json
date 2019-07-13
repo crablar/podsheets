@@ -4,9 +4,14 @@
     "curly": true,
     "arrow-parens": false,
     "only-arrow-functions": [false],
+    "allowJs": true,
     "object-literal-sort-keys": false,
     "variable-name": [true, "ban-keywords", "allow-leading-underscore"],
-    "space-before-function-paren": false
+    "space-before-function-paren": false,
+    "ordered-imports": [true, {
+      "import-sources-order": "any",
+      "named-imports-order": "case-insensitive"
+    }]
   },
   "jsRules": { "curly": true },
   "rulesDirectory": []
