@@ -75,7 +75,7 @@ export default class Header extends React.Component<IPublicPodcastHeaderProps, {
 const styles = {
     linkStyle: {
         color: 'black',
-        fontWeight: '500',
+        fontWeight: 500,
         fontSize: "120%"
-    }
+    } as React.CSSProperties
 }

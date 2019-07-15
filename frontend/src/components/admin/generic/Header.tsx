@@ -63,6 +63,6 @@ const style = {
     navLink: {
         ...globalStyles.linkInvertedLight,
         fontSize: "120%",
-        fontWeight: "500"
-    },
+        fontWeight: 500
+    } as React.CSSProperties,
 };

@@ -673,7 +673,7 @@ const styles = {
         fontWeight: 600,
         marginBottom: 15,
         marginTop: 40,
-    },
+    } as React.CSSProperties,
     formInput: {
         minWidth: "75%",
         color: colors.mainLight,

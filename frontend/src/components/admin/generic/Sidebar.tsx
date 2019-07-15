@@ -152,7 +152,7 @@ const style = {
         flexDirection: "column",
         alignItems: "center",
         position: "relative" as "relative",
-    },
+    } as React.CSSProperties,
     sidebar: {
         borderRadius: 0,
         border: "none",

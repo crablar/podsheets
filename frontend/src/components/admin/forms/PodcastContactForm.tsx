@@ -192,7 +192,7 @@ export default class PodcastContactForm extends React.Component<IPodcastContactF
     }
 
     @autobind
-    protected async onSubmit(e: React.SyntheticEvent<Event>) {
+    protected async onSubmit(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
         await this.props.onSubmit(this.state.fields);
 
