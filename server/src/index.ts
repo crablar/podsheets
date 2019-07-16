@@ -10,6 +10,6 @@ dotenv.config();
 import app from "./app";
 import { logger } from "./lib/logger";
 
-app.listen(process.env.PORT, () => {
-    logger.info(`App is running at port ${process.env.PORT}`);
+app.listen(config.port, () => {
+    logger.info(`App is running at port ${config.port}`);
 });

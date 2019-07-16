@@ -456,7 +456,7 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                                 })
                             :
                             <span>
-                                You don"t have any collaborators left to remove
+                                You don't have any collaborators left to remove
                             </span>
                         }
                     </Modal.Content>

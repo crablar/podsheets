@@ -4,7 +4,7 @@
         "module": "commonjs",
         "moduleResolution": "node",
         "outDir": "build",
-        "rootDir": "src",
+        "rootDir": "./",
         "lib": ["es2015"],
         "allowJs": true,
         "sourceMap": true,

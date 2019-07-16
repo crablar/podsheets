@@ -2,7 +2,7 @@
   "name": "podsheets-server",
   "version": "1.0.0",
   "description": "",
-  "main": "build/index.js",
+  "main": "build/src/index.js",
   "engines": {
     "node": "6.10.2"
   },
@@ -11,7 +11,7 @@
     "build": "npm run lint && tsc",
     "lint": "tslint 'src/**/*.ts?(x)'",
     "dev": "nodemon build --ext ts,tsx --jsx --watch ./src --exec 'npm run lint && tsc && npm run start'",
-    "start": "node build/index.js",
+    "start": "node build/src/index.js",
     "clear": "rm -rf build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
