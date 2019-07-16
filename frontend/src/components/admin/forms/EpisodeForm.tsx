@@ -188,7 +188,7 @@ export default class EpisodeForm extends React.Component<IEpisodeFormProps, IEpi
         const splitAudioUrl = audioUrl.split("/");
         const splitUploadUrl = uploadUrl.split("/");
         const { title, summary, fullContent} = this.state.fields;
-        const shouldDisablePublish = false; //!(title && summary && (audioUrl || uploadUrl));
+        const shouldDisablePublish = false; // !(title && summary && (audioUrl || uploadUrl));
         let fileName = "";
         if (audioUrl || uploadUrl) {
             fileName = splitAudioUrl[splitAudioUrl.length - 1] || splitUploadUrl[splitUploadUrl.length - 1];
@@ -677,7 +677,7 @@ export default class EpisodeForm extends React.Component<IEpisodeFormProps, IEpi
             );
         }
         const { title, summary, fullContent, audioUrl, uploadUrl } = this.state.fields;
-        const shouldDisablePublish = false; //!(title && summary && (audioUrl || uploadUrl));
+        const shouldDisablePublish = false; // !(title && summary && (audioUrl || uploadUrl));
         return (
             <Popup
                 trigger={

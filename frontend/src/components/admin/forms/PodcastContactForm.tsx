@@ -97,14 +97,14 @@ export default class PodcastContactForm extends React.Component<IPodcastContactF
                             onChange={this.onChangeInputField}
                             />
                     </Form.Field>
-                    <Button 
-                        onClick={(e) => this.onPreview(this.state.fields, e)} 
-                        style={{ marginTop: '1em', fontWeight: 550, fontSize: '120%', color: 'white', backgroundColor: '#6D75DD'}}>
+                    <Button
+                        onClick={(e) => this.onPreview(this.state.fields, e)}
+                        style={{ marginTop: "1em", fontWeight: 550, fontSize: "120%", color: "white", backgroundColor: "#6D75DD"}}>
                         Preview
                     </Button>
-                    <Button 
-                        onClick={(e) => this.onSubmit(e)} 
-                        style={{ marginTop: '1em', fontWeight: 550, fontSize: '120%', color: 'black', backgroundColor: '#F4CB10'}}>
+                    <Button
+                        onClick={(e) => this.onSubmit(e)}
+                        style={{ marginTop: "1em", fontWeight: 550, fontSize: "120%", color: "black", backgroundColor: "#F4CB10"}}>
                         Save
                     </Button>
                 </Form>

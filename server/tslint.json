@@ -3,7 +3,6 @@
   "rules": {
     "curly": true,
     "arrow-parens": false,
-    "allowJs": true,
     "only-arrow-functions": [false],
     "object-literal-sort-keys": false,
     "variable-name": [true, "ban-keywords", "allow-leading-underscore"],

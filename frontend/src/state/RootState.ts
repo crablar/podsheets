@@ -546,7 +546,7 @@ export class RootState {
     @action
     public async submitPodcast() {
         try {
-            const response = await axios.post("/submit-podcast", {"podcastId": this.podcast._id, "podcastTitle": this.podcast.title, "podcastEmail": this.podcast.email, "rssFeed":  "/p/" + this.podcast.slug +"/rss.xml"});
+            const response = await axios.post("/submit-podcast", { podcastId: this.podcast._id, podcastTitle: this.podcast.title, podcastEmail: this.podcast.email, rssFeed:  "/p/" + this.podcast.slug + "/rss.xml"});
             return {
                 message: "You will receive an email when your podcast is published.",
                 error: "",

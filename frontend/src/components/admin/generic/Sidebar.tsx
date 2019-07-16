@@ -158,7 +158,7 @@ const style = {
         border: "none",
         minHeight: "100%",
         marginBottom: 0,
-        width: "15rem"
+        width: "15rem",
     },
     menuItem: {
         padding: 0,

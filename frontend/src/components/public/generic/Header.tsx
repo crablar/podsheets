@@ -52,14 +52,14 @@ export default class Header extends React.Component<IPublicPodcastHeaderProps, {
                 <Menu.Menu position="right">
                     <Menu.Item>
                         {twitter ?
-                            <a style={{ margin: '0 0.5em' }} href={addhttp(twitter)} target="_blank">
+                            <a style={{ margin: "0 0.5em" }} href={addhttp(twitter)} target="_blank">
                                 <Icon color="black" name="twitter" size="large" />
                             </a>
                             :
                             null
                         }
                         {facebook ?
-                            <a style={{ margin: '0 0.5em' }} href={addhttp(facebook)} target="_blank">
+                            <a style={{ margin: "0 0.5em" }} href={addhttp(facebook)} target="_blank">
                                 <Icon color="black" name="facebook" size="large" />
                             </a>
                             :
@@ -74,8 +74,8 @@ export default class Header extends React.Component<IPublicPodcastHeaderProps, {
 
 const styles = {
     linkStyle: {
-        color: 'black',
+        color: "black",
         fontWeight: 500,
-        fontSize: "120%"
-    } as React.CSSProperties
-}
+        fontSize: "120%",
+    } as React.CSSProperties,
+};
