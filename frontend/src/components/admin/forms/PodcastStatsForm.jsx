@@ -2,7 +2,7 @@ import { inject, observer } from "mobx-react";
 import { autobind } from "core-decorators";
 import * as React from "react";
 import {
-    Button, Divider, Dropdown, Form, Header, Icon, Image, Input, Message, Reveal, Segment, Table,
+    Button, Divider, Dropdown, Form, Header, Icon, Image, Input, Message, Reveal, Segment, Table
 } from "semantic-ui-react";
 import * as moment from "moment";
 import { IPodcast } from "../../../lib/interfaces";
@@ -27,7 +27,7 @@ const FlexibleXYPlot = makeWidthFlexible(XYPlot);
 @observer
 export default class PodcastForm extends React.Component {
 
-    public state = {
+    state = {
         lastDrawLocation: null,
         series: [
             {
@@ -42,7 +42,26 @@ export default class PodcastForm extends React.Component {
         direction: null,
     };
 
-    public render() {
+    handleSort = clickedColumn => () => {
+        const { column, data, direction } = this.state
+
+        if (column !== clickedColumn) {
+            this.setState({
+                column: clickedColumn,
+                data: _.sortBy(data, [clickedColumn]),
+                direction: 'ascending',
+            })
+
+            return
+        }
+
+        this.setState({
+            data: data.reverse(),
+            direction: direction === 'ascending' ? 'descending' : 'ascending',
+        })
+    }
+
+    render() {
 
         const { series, lastDrawLocation, column, data, direction } = this.state;
 
@@ -62,7 +81,7 @@ export default class PodcastForm extends React.Component {
                 <Segment style={{ width: "75%", paddingLeft: 0 }} basic>
                     <Header as="h2" style={globalStyles.title}>
                             Analytics
-                        <div style={{ marginTop: "1em" }}>
+                        <div style={{ marginTop: '1em' }}>
                             <div style={style.noEpisodeText}>
                                 Analytics appear after a published episode is heard
                             </div>
@@ -72,7 +91,7 @@ export default class PodcastForm extends React.Component {
                         </div>
                     </Header>
                 </Segment>
-            );
+            )
         }
         return (
             <Segment style={{ width: "75%", paddingLeft: 0 }} basic>
@@ -147,13 +166,13 @@ export default class PodcastForm extends React.Component {
                 <Table sortable celled fixed>
                     <Table.Header>
                         <Table.Row>
-                            <Table.HeaderCell sorted={column === "title" ? direction : null} onClick={this.handleSort("title")}>
+                            <Table.HeaderCell sorted={column === 'title' ? direction : null} onClick={this.handleSort('title')}>
                                 Title
                             </Table.HeaderCell>
-                            <Table.HeaderCell sorted={column === "date" ? direction : null} onClick={this.handleSort("date")}>
+                            <Table.HeaderCell sorted={column === 'date' ? direction : null} onClick={this.handleSort('date')}>
                                 Date
                             </Table.HeaderCell>
-                            <Table.HeaderCell sorted={column === "downloads" ? direction : null} onClick={this.handleSort("downloads")}>
+                            <Table.HeaderCell sorted={column === 'downloads' ? direction : null} onClick={this.handleSort('downloads')}>
                                 Downloads
                             </Table.HeaderCell>
                         </Table.Row>
@@ -162,7 +181,7 @@ export default class PodcastForm extends React.Component {
                         {_.map(this.state.data, ({ title, date, downloads }) => (
                             <Table.Row key={title}>
                                 <Table.Cell>{title}</Table.Cell>
-                                <Table.Cell>{moment(date).format("L")}</Table.Cell>
+                                <Table.Cell>{moment(date).format('L')}</Table.Cell>
                                 <Table.Cell>{downloads}</Table.Cell>
                             </Table.Row>
                         ))}
@@ -173,27 +192,8 @@ export default class PodcastForm extends React.Component {
         );
     }
 
-    protected handleSort = clickedColumn => () => {
-        const { column, data, direction } = this.state;
-
-        if (column !== clickedColumn) {
-            this.setState({
-                column: clickedColumn,
-                data: _.sortBy(data, [clickedColumn]),
-                direction: "ascending",
-            });
-
-            return;
-        }
-
-        this.setState({
-            data: data.reverse(),
-            direction: direction === "ascending" ? "descending" : "ascending",
-        });
-    }
-
     @autobind
-    protected getSeriesData() {
+    getSeriesData() {
         const statistics = this.props.currentPodcast.statistics;
         return _.map(statistics, (value, key) => {
             const x = new Date(Number(key));
@@ -201,15 +201,15 @@ export default class PodcastForm extends React.Component {
                 x,
                 y: value,
             };
-        });
+        })
     }
 
     @autobind
-    protected isEnoughData() {
+    isEnoughData() {
         const statistics = this.props.currentPodcast.statistics;
         const keys = _.map(statistics, (value, key) => {
             return { key };
-        });
+        })
         const sorted = _.sortBy(keys, (o) => o.key);
         if (sorted.length >= 2) {
             const diff = ((sorted[sorted.length - 1].key - sorted[0].key)) / 86400000;
@@ -221,7 +221,7 @@ export default class PodcastForm extends React.Component {
     }
 
     @autobind
-    protected getTableData() {
+    getTableData() {
         const episodes = this.props.rootState.publishedEpisodes;
         return _.map(episodes, (episode) => {
             return {
@@ -229,7 +229,7 @@ export default class PodcastForm extends React.Component {
                 date: episode.publishedAt,
                 downloads: episode.downloadsCount,
             };
-        });
+        })
     }
 }
 
@@ -258,5 +258,5 @@ const style = {
     noEpisodeText: {
         color: colors.mainVibrant,
         fontSize: "70%",
-    },
+    }
 };
