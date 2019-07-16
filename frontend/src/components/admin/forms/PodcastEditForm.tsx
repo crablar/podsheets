@@ -85,7 +85,7 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
         loadingCollaborators: false,
         isCropping: false,
         isSocialSubscriptionActive: false,
-        socialNetStatusChange: false
+        socialNetStatusChange: false,
     };
 
     constructor(props: IPodcastEditFormProps) {
@@ -115,7 +115,7 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                 removedCollaborators: [],
                 isCropping: false,
                 socialNetStatusChange: false,
-                isSocialSubscriptionActive: props.currentPodcast.subscription.storageLimit === 1000
+                isSocialSubscriptionActive: props.currentPodcast.subscription.storageLimit === 1000,
             };
         }
     }
@@ -159,7 +159,7 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                             }
                         </div>
                     </Header>
-                    <p style={{ ...globalStyles.workspaceContentText, marginBottom: '2em' }}>
+                    <p style={{ ...globalStyles.workspaceContentText, marginBottom: "2em" }}>
                         The podcast information on this page will publish to iTunes and Google Play.
                     </p>
                     {/* {this.props.rootState.env.AD_PLACEMENT === "true" ?
@@ -185,13 +185,13 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                                 flex: 1,
                                 color: colors.mainDark,
                             }}>
-                                {this.state.fields.advertisingEnabled ? 'Disable' : 'Enable'} Advertising
+                                {this.state.fields.advertisingEnabled ? "Disable" : "Enable"} Advertising
                         </div>
                         </div>
                         :
                         null
                     } */}
-                    
+
                     <p style={{
                             color: colors.mainDark,
                             fontSize: "120%",
@@ -218,7 +218,7 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                                 </Reveal>
                             </div>
                         </div>
-                        
+
                         <input
                             ref="podcastImgRef"
                             onChange={this.onFileInput}
@@ -240,8 +240,8 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                             marginBottom: 5,
                             fontWeight: 600,
                         }}>RSS</p>
-                        <a 
-                            href={getBaseUrl() + `p/${this.props.rootState.podcast.slug}/rss.xml`} 
+                        <a
+                            href={getBaseUrl() + `p/${this.props.rootState.podcast.slug}/rss.xml`}
                             target="_blank"
                             style={{
                             color: colors.mainDark,
@@ -348,10 +348,10 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                     <Form.Field className="formInput" required>
                         <div style={styles.formLabel}>Social</div>
                         {this.state.isSocialSubscriptionActive ?
-                            <p>Click button to {this.state.fields.socialNetEnabled ? 'disable' : 'enable'} social network and hit save</p> :
+                            <p>Click button to {this.state.fields.socialNetEnabled ? "disable" : "enable"} social network and hit save</p> :
                             <p style={globalStyles.workspaceContentText}>You must be <Link to={{ pathname: "/subscription" }}>subscribed</Link> to the social plan to spin up a social network</p>}
-                        {/* <Radio 
-                            disabled={!this.state.isSocialSubscriptionActive} 
+                        {/* <Radio
+                            disabled={!this.state.isSocialSubscriptionActive}
                             toggle
                             onClick={(e) => {
                                 const fields = this.state.fields;
@@ -364,9 +364,9 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                             }}
                             checked={this.state.fields.socialNetEnabled}
                             /> */}
-                            <Button 
+                            <Button
                                 disabled={!this.state.isSocialSubscriptionActive}
-                                style={{ backgroundColor: this.state.fields.socialNetEnabled ? '#B55B4A' : '#66B54A', color: 'white' }}
+                                style={{ backgroundColor: this.state.fields.socialNetEnabled ? "#B55B4A" : "#66B54A", color: "white" }}
                                 onClick={(e) => {
                                     const fields = this.state.fields;
                                     this.setState({
@@ -374,15 +374,15 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                                             ...fields,
                                             socialNetEnabled: !fields.socialNetEnabled,
                                         },
-                                        socialNetStatusChange: true
+                                        socialNetStatusChange: true,
                                     });
                                 }}>
-                                {this.state.fields.socialNetEnabled ? 'Disable' : 'Enable'} Social Network
+                                {this.state.fields.socialNetEnabled ? "Disable" : "Enable"} Social Network
                             </Button>
                     </Form.Field>
-                    <Button 
-                        onClick={(e) => this.onSubmit(e)} 
-                        style={{...styles.buttonStyle, backgroundColor: '#F4CB10'}}>
+                    <Button
+                        onClick={(e) => this.onSubmit(e)}
+                        style={{...styles.buttonStyle, backgroundColor: "#F4CB10"}}>
                         Save
                     </Button>
                 </Form>
@@ -456,7 +456,7 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                                 })
                             :
                             <span>
-                                You don't have any collaborators left to remove
+                                You don"t have any collaborators left to remove
                             </span>
                         }
                     </Modal.Content>
@@ -658,11 +658,11 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
 }
 
 const styles = {
-    buttonStyle: { 
-        marginTop: '1em', 
-        fontWeight: 550, 
-        fontSize: '120%', 
-        color: 'black', 
+    buttonStyle: {
+        marginTop: "1em",
+        fontWeight: 550,
+        fontSize: "120%",
+        color: "black",
     },
     formLabel: {
         display: "flex",

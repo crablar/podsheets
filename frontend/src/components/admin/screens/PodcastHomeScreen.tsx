@@ -45,7 +45,7 @@ export default class PodcastHomeScreen extends React.Component<IPodcastHomeScree
         this.state = { filter: "all" };
 
     }
-    
+
     public render() {
         if (this.props.rootState.isAuthenticated) {
             return browserSwitch(
@@ -57,7 +57,7 @@ export default class PodcastHomeScreen extends React.Component<IPodcastHomeScree
                     <div style={globalStyles.contentWrapper} >
                         <Sidebar currentPodcast={this.props.rootState.podcast} />
                         <main style={globalStyles.workspaceContent}>
-                            <ContentHeader 
+                            <ContentHeader
                                 clearMessages={() => this.clearMessages()}
                                 message={this.state.message}
                             />
@@ -68,7 +68,6 @@ export default class PodcastHomeScreen extends React.Component<IPodcastHomeScree
                                     onSubmit={this.onSubmitFeed} />
                                 <PublishPodcastModal
                                     onSubmit={this.onSubmitPodcast}/>
-                                
                             </div>
                             <div style={style.headWrapper}>
                                 {this.renderEpisodesMenu()}
@@ -147,7 +146,7 @@ export default class PodcastHomeScreen extends React.Component<IPodcastHomeScree
                             <Grid.Row textAlign="center" style={{ marginTop: 80 }}>
                                 <Grid.Column columns={1} width={16}>
                                     <h1 style={style.creatorText}>
-                                        Welcome to Podsheets, built by podcasters for podcasters! 
+                                        Welcome to Podsheets, built by podcasters for podcasters!
                                     </h1>
                                     <br/>
                                     <p style={style.creatorText}>
@@ -165,7 +164,7 @@ export default class PodcastHomeScreen extends React.Component<IPodcastHomeScree
                                             Intuitive and fast
                                         </h3>
                                         <Grid.Row textAlign="left" style={{ color: colors.mainDark}}>
-                                         <div style={{textAlign: "left", paddingTop: "20px", fontSize:"110%", lineHeight: "25px"}}>
+                                         <div style={{textAlign: "left", paddingTop: "20px", fontSize: "110%", lineHeight: "25px"}}>
                                          With just a podcast title, graphic, and an audio file, publish your podcast to iTunes and Google Play.
                                         </div>
                                         </Grid.Row>
@@ -182,8 +181,8 @@ export default class PodcastHomeScreen extends React.Component<IPodcastHomeScree
                                            Your podcast on the web
                                         </h3>
                                         <Grid.Row textAlign="left" style={{ color: colors.mainDark}}>
-                                        <div style={{textAlign: "left", paddingTop: "20px", fontSize:"110%", lineHeight: "25px"}}>
-                                         Forget fumbling to create a separate website for your podcast. 
+                                        <div style={{textAlign: "left", paddingTop: "20px", fontSize: "110%", lineHeight: "25px"}}>
+                                         Forget fumbling to create a separate website for your podcast.
                                          Customize a simple website, your home on the web, where your episodes will be posted automatically.
                                          Invite friends to collaborate.
                                         </div>

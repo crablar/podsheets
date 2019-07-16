@@ -22,7 +22,7 @@ export default class Footer extends React.Component<IPublicPodcastFooterProps, {
                 textAlign: "center",
                 color: "gray",
                 position: "relative",
-                bottom: 0
+                bottom: 0,
             }} >
                 Copyright © 2017 Podsheets
             </Container>

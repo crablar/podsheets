@@ -122,7 +122,7 @@ export default class PodcastSubscriptionForm extends React.Component<IPodcastSub
         const now = (new Date()).getTime();
         const storageLimit = _.get(this.props, "rootState.podcast.subscription.storageLimit", storage.free);
         const usedStorage = _.get(this.props, "rootState.podcast.usedStorage", 0).toFixed(2);
-        
+
         return (
             <Segment style={{ width: "75%", color: colors.mainDark, paddingLeft: 0 }} basic>
                 <Header as="h2" style={style.title}>

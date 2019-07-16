@@ -29,7 +29,7 @@ export class PublicClientState {
     @action
     public async submitContactMessage(name: string, email: string, message: string, podcastEmail: string) {
         try {
-            const response = await axios.post("/submit-contact-message", {"podcastEmail": podcastEmail, "name": name, "email": email, "message":  message});
+            const response = await axios.post("/submit-contact-message", { podcastEmail, name, email, message });
             return {
                 message: "Your message has been sent.",
                 error: "",

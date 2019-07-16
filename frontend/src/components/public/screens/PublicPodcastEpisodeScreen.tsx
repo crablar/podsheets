@@ -138,7 +138,7 @@ export default class PublicPodcastEpisodeScreen extends React.Component<IPublicP
                         </audio>
                     </p>
                     <p style={style.textContent}>
-                        {e.fullContent?
+                        {e.fullContent ?
                             <div dangerouslySetInnerHTML={{ __html: e.fullContent }} />
                             :
                             <div dangerouslySetInnerHTML={{ __html: e.summary }} />
