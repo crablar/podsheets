@@ -115,7 +115,7 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                 removedCollaborators: [],
                 isCropping: false,
                 socialNetStatusChange: false,
-                isSocialSubscriptionActive: props.currentPodcast.subscription.storageLimit === 1000,
+                isSocialSubscriptionActive: props.currentPodcast.subscription ? props.currentPodcast.subscription.storageLimit === 1000 : false,
             };
         }
     }
