@@ -80,7 +80,7 @@ const config = {
       privateKey: envVars.GOOGLE_STORAGE_PRIVATE_KEY.replace(/\\n/g, "\n"),
       bucket: envVars.GOOGLE_STORAGE_BUCKET,
     },
-    callbackURL: envVarsSchema.GOOGLE_CALLBACK_URL,
+    callbackURL: envVars.GOOGLE_CALLBACK_URL,
   },
   facebook: {
     client: {
