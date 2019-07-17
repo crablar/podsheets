@@ -1,7 +1,7 @@
 import { autobind } from "core-decorators";
 import { inject, observer } from "mobx-react";
 import * as React from "react";
-import { Container, Header, Icon, Image, Segment, Form, Button, Message} from "semantic-ui-react";
+import { Button, Container, Form, Header, Image, Message, Segment } from "semantic-ui-react";
 import { PublicClientState } from "../../../state/PublicClientState";
 
 interface IPublicPodcastContactScreenProps { publicClientState?: PublicClientState; }
@@ -23,7 +23,8 @@ export default class PublicPodcastContactScreen extends React.Component<IPublicP
         contactMessage: "",
         hasContactErrors: false,
         hasSubmitted: false,
-    }
+    };
+
     public render() {
 
         return (
@@ -50,7 +51,7 @@ export default class PublicPodcastContactScreen extends React.Component<IPublicP
                             <p style={style.textContent}>
                                 {this.props.publicClientState.podcast.contactTwitter}
                             </p>
-                            <div style={{paddingTop:"50px"}}></div>
+                            <div style={{paddingTop: "50px" }}></div>
                             {this.renderMessage()}
                             {this.renderContactForm()}
                         </Segment>
@@ -58,6 +59,64 @@ export default class PublicPodcastContactScreen extends React.Component<IPublicP
                 </main>
             </div>
         );
+    }
+
+    @autobind
+    public onSubmit(e) {
+        e.preventDefault();
+        this.setState({hasSubmitted: true});
+        if ((this.state.contactEmail === "") || (this.state.contactName === "") || (this.state.contactMessage === "")) {
+            this.setState({hasContactErrors: true});
+        } else {
+            this.setState({asContactErrors: false});
+
+            // request to send the email
+            this.props.publicClientState.submitContactMessage(this.state.contactName, this.state.contactEmail, this.state.contactMessage, this.props.publicClientState.podcast.email);
+            // tslint:disable-next-line:no-console
+            console.log("end");
+        }
+    }
+
+    @autobind
+    public renderContactForm() {
+        if (!this.props.publicClientState.podcast.email) {
+            return null;
+        }
+
+        return (
+            <Form>
+                <Form.Input required name="contactName" label="Name (required)" style={{maxWidth: "300px"}} value={this.state.contactName}
+                onChange={this.onChangeInputField}/>
+                <Form.Input name="contactEmail" required label="Email (required)" style={{maxWidth: "300px"}} value={this.state.contactEmail} onChange={this.onChangeInputField}/>
+                <Form.TextArea name="contactMessage" required label="Message (required)" style={{maxWidth: "500px"}}
+                value={this.state.contactMessage} onChange={this.onChangeTextArea}/>
+                <Button type="button" onClick={this.onSubmit}>Submit</Button>
+            </Form>
+        );
+    }
+
+    @autobind
+    public renderMessage() {
+        // tslint:disable-next-line:no-console
+        console.log("has contacterrors " + this.state.hasContactErrors + " has submitted " + this.state.hasSubmitted);
+
+        if (this.state.hasContactErrors && this.state.hasSubmitted) {
+            return (
+                <Message
+                    error
+                    style={{maxWidth: "400px"}}
+                >Please fill out all the fields from the contact form.</Message>
+            );
+        } else if (!this.state.hasContactErrors && this.state.hasSubmitted) {
+            return (
+                <Message
+                    color="blue"
+                    style={{maxWidth: "300px"}}
+                >Your message has been sent.</Message>
+            );
+        } else {
+            return null;
+        }
     }
 
     @autobind
@@ -73,63 +132,6 @@ export default class PublicPodcastContactScreen extends React.Component<IPublicP
             const fields = { ...this.state, [textArea.name]: textArea.value };
             this.setState({ [textArea.name]: textArea.value});
         }
-    }
-
-    @autobind
-    public onSubmit(e) {
-        e.preventDefault();
-        this.setState({hasSubmitted: true});
-        if ((this.state.contactEmail === "") || (this.state.contactName === "") || (this.state.contactMessage === "")){
-            this.setState({hasContactErrors: true});
-        }
-        else {
-            this.setState({asContactErrors: false});
-
-            // request to send the email
-            this.props.publicClientState.submitContactMessage(this.state.contactName, this.state.contactEmail, this.state.contactMessage, this.props.publicClientState.podcast.email);
-            console.log("end");
-        }
-    }
-
-    @autobind
-    public renderContactForm(){
-        if (!this.props.publicClientState.podcast.email) {
-            return null;
-        }
-
-        return (
-            <Form>
-                <Form.Input required name="contactName" label='Name (required)' style={{maxWidth: "300px"}} value={this.state.contactName}
-                onChange={this.onChangeInputField}/>
-                <Form.Input name="contactEmail" required label='Email (required)' style={{maxWidth: "300px"}} value={this.state.contactEmail} onChange={this.onChangeInputField}/>
-                <Form.TextArea name="contactMessage" required label='Message (required)' style={{maxWidth: "500px"}} 
-                value={this.state.contactMessage} onChange={this.onChangeTextArea}/>
-                <Button type="button" onClick={this.onSubmit}>Submit</Button>
-            </Form>
-        );
-    }
-
-    @autobind
-    public renderMessage(){
-        console.log("has contacterrors " +this.state.hasContactErrors + " has submitted " + this.state.hasSubmitted);
-        if (this.state.hasContactErrors && this.state.hasSubmitted){
-            return (
-                <Message
-                    error
-                    style={{maxWidth: "400px"}}
-                >Please fill out all the fields from the contact form.</Message>
-            );
-        }
-        else if (!this.state.hasContactErrors && this.state.hasSubmitted){
-            return (
-                <Message
-                    color="blue"
-                    style={{maxWidth: "300px"}}
-                >Your message has been sent.</Message>
-            );
-        }
-        else 
-            return null;
     }
 }
 

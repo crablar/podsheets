@@ -57,7 +57,7 @@ export default class RSSImportForm extends React.Component<any, IRSSImportFormSt
                     <Form action="#" onSubmit={(e) => e.preventDefault()}>
                         <Form.Button onClick={() => this.setState({ open: true })} style={style.importButton}>
                             Import RSS
-                    </Form.Button>
+                        </Form.Button>
                     </Form>
                 }
                 <Modal

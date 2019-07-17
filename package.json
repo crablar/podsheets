@@ -2,7 +2,7 @@
   "name": "podsheets",
   "version": "1.0.0",
   "description": "Podcast content manager",
-  "main": "server/build/index.js",
+  "main": "server/build/src/index.js",
   "engines": {
     "node": "6.10.2"
   },

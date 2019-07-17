@@ -51,9 +51,7 @@ export default class CampaignsScreen extends React.Component<ICampaignsScreenPro
                             clearMessages={() => this.clearMessages()}
                             message={this.state.message}
                             error={this.state.error} />
-                        <div>
-                            Campaigns
-                        </div>
+                        <Header as="h2" style={globalStyles.title}>Campaigns</Header>
                     </main>
                 </div>
             </div>

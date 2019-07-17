@@ -4,7 +4,7 @@ import { inject, observer } from "mobx-react";
 import * as React from "react";
 import * as ReactQuill from "react-quill/src/";
 import StripeCheckout from "react-stripe-checkout";
-import { Button, Checkbox, Form, Header, Icon, Input, Message, Modal, Popup, Radio, Segment, List } from "semantic-ui-react";
+import { Button, Checkbox, Form, Header, Icon, Input, List, Message, Modal, Popup, Radio, Segment } from "semantic-ui-react";
 import { storage } from "../../../lib/constants";
 import { IPodcast } from "../../../lib/interfaces";
 import { colors, globalStyles } from "../../../lib/styles";
@@ -53,7 +53,7 @@ export default class PublishPodcastModal extends React.Component<any, IPublishPo
                     <Form action="#" onSubmit={(e) => e.preventDefault()}>
                         <Form.Button onClick={() => this.setState({ open: true })} style={style.importButton}>
                             Publish Podcast
-                    </Form.Button>
+                        </Form.Button>
                     </Form>
                 }
                 <Modal
@@ -113,7 +113,6 @@ export default class PublishPodcastModal extends React.Component<any, IPublishPo
     protected closeModal() {
         this.setState({ open: false, loading: false });
     }
-
 
     @autobind
     protected onError(message: string) {

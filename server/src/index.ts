@@ -11,5 +11,5 @@ import app from "./app";
 import { logger } from "./lib/logger";
 
 app.listen(config.port, () => {
-    logger.info(`App is running at port 3001`);
+    logger.info(`App is running at port ${config.port}`);
 });

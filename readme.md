@@ -68,6 +68,12 @@ The webpack dev server will be available at `http://localhost:3000`
 NOTE: This develpment configuration makes webpack server running at port 3000 and the backend server at port 3001, webpack will
 automatically proxy all server requests to the server port.
 
+**Errors**:
+
+`Error occurred while trying to proxy request / from localhost:3000 to localhost:3001`
+
+* Try changing server port to something like `4000` in `.env` and `webpack.config.js`
+
 ### Build for production:
 
 ```sh

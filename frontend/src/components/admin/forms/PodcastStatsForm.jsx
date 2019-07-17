@@ -7,6 +7,7 @@ import {
 import * as moment from "moment";
 import { IPodcast } from "../../../lib/interfaces";
 import { colors } from "../../../lib/styles";
+import { globalStyles } from "../../../lib/styles";
 
 import Highlight from "../utils/highlight.jsx";
 
@@ -78,18 +79,15 @@ export default class PodcastForm extends React.Component {
         if (this.props.rootState.publishedEpisodes.length === 0) {
             return (
                 <Segment style={{ width: "75%", paddingLeft: 0 }} basic>
-                    <Header as="h2" style={{ color: colors.mainDark, display: "flex", flexDirection: "column", fontWeight: "200" }}>
-                        <div style={{ color: colors.mainDark, flex: 1, marginBottom: 30 }}>
-                            Stats
-                    </div>
-                        <div>
+                    <Header as="h2" style={globalStyles.title}>
+                            Analytics
+                        <div style={{ marginTop: '1em' }}>
                             <div style={style.noEpisodeText}>
-                                Stats appear after a published episode is heard
-                        </div>
-
+                                Analytics appear after a published episode is heard
+                            </div>
                             <div style={style.noEpisodeText}>
                                 Publish an episode to get started
-                        </div>
+                            </div>
                         </div>
                     </Header>
                 </Segment>
@@ -98,8 +96,8 @@ export default class PodcastForm extends React.Component {
         return (
             <Segment style={{ width: "75%", paddingLeft: 0 }} basic>
                 <Header as="h1" style={{ color: colors.mainDark, display: "flex", flexDirection: "row" }}>
-                    <div style={style.title}>
-                        Stats
+                    <div style={globalStyles.title}>
+                        Analytics
                     </div>
                     <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
                         <div style={style.downloadCount}>
@@ -259,6 +257,6 @@ const style = {
     },
     noEpisodeText: {
         color: colors.mainVibrant,
-        fontSize: "60%",
+        fontSize: "70%",
     }
 };

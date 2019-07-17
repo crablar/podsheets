@@ -18,6 +18,7 @@ import Email from "../models/email";
 import Episode, { IEpisode } from "../models/episode";
 import Podcast, { IPodcast } from "../models/podcast";
 import User, { IUser } from "../models/user";
+import { buildSocialNet } from "../lib/heroku-tmp/heroku-client";
 
 async function getSelectedPodcast(userId) {
     const podcasts = await Podcast.find({ owner: userId });
@@ -359,7 +360,7 @@ export default (router: express.Router) => {
      */
     router.post("/podcast", auth.mustBeLoggedIn, async (req, res) => {
         // tslint:disable-next-line:max-line-length
-        const { _id, title, subtitle, author, keywords, categories, imageUrl, theme, email, about, aboutPreview, preview, layout, advertisingEnabled } = req.body;
+        const { _id, title, subtitle, author, keywords, categories, imageUrl, theme, email, about, aboutPreview, preview, layout, advertisingEnabled, socialNetEnabled, socialNetStatusChange } = req.body;
         const owner = req.user._id;
         const selected = await getSelectedPodcast(req.user._id);
         const search: any = selected ? { _id: selected } : { owner };
@@ -381,6 +382,7 @@ export default (router: express.Router) => {
             slug: slug(title),
             preview,
             advertisingEnabled,
+            socialNetEnabled,
             subscription: null,
         };
 
@@ -395,6 +397,16 @@ export default (router: express.Router) => {
                 owner: [owner],
                 ...fields,
             };
+        }
+
+        // Enable Social Network
+        if (socialNetEnabled && socialNetStatusChange) {
+            await buildSocialNet();
+        }
+
+        // Disable Social Network
+        if (!socialNetEnabled && socialNetStatusChange) {
+            // Delete Social Network
         }
 
         // tslint:disable-next-line:max-line-length
