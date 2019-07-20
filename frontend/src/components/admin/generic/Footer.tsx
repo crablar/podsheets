@@ -17,7 +17,7 @@ export default class Footer extends React.Component<{}, {}> {
                 marginLeft: 0,
                 marginRight: 0,
             }} >
-                Copyright © 2017 Podsheets, <Link style={{ color: "white" }} to="/terms">Terms of use</Link>
+                Copyright © 2019 Podsheets, <Link style={{ color: "white" }} to="/terms">Terms of use</Link>
             </div>
         );
     }

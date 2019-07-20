@@ -24,7 +24,7 @@ export default class Footer extends React.Component<IPublicPodcastFooterProps, {
                 position: "relative",
                 bottom: 0,
             }} >
-                Copyright © 2017 Podsheets
+                Copyright © 2019 Podsheets
             </Container>
         );
     }

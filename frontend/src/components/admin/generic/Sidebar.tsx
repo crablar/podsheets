@@ -138,7 +138,7 @@ export default function Sidebar(props: ISidebarProps) {
                 width: "11rem",
                 fontSize: "85%",
             }}>
-                Copyright © 2017 Podsheets
+                Copyright © 2019 Podsheets
             </div>
         </nav>
     );
