@@ -130,12 +130,6 @@ export default class PublicPodcastHomeScreen extends React.Component<IPublicPodc
                             fontSize: "110%",
                         }} />
                         {moment(e.updatedAt).format("ll")}
-                        <a style={style.commentButton}>
-                            <Icon name="comments outline" style={{
-                                fontSize: "110%",
-                            }} />
-                            Leave a comment
-                    </a>
                     </div>
                     <p style={style.audioControl} >
                         <audio controls={true} style={style.audio} preload="none">
