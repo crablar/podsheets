@@ -345,41 +345,6 @@ export default class PodcastEditForm extends React.Component<IPodcastEditFormPro
                                 }
                             }} />
                     </Form.Field>
-                    <Form.Field className="formInput" required>
-                        <div style={styles.formLabel}>Social</div>
-                        {this.state.isSocialSubscriptionActive ?
-                            <p>Click button to {this.state.fields.socialNetEnabled ? "disable" : "enable"} social network and hit save</p> :
-                            <p style={globalStyles.workspaceContentText}>You must be <Link to={{ pathname: "/subscription" }}>subscribed</Link> to the social plan to spin up a social network</p>}
-                        {/* <Radio
-                            disabled={!this.state.isSocialSubscriptionActive}
-                            toggle
-                            onClick={(e) => {
-                                const fields = this.state.fields;
-                                this.setState({
-                                    fields: {
-                                        ...fields,
-                                        socialNetEnabled: !fields.socialNetEnabled,
-                                    },
-                                });
-                            }}
-                            checked={this.state.fields.socialNetEnabled}
-                            /> */}
-                            <Button
-                                disabled={!this.state.isSocialSubscriptionActive}
-                                style={{ backgroundColor: this.state.fields.socialNetEnabled ? "#B55B4A" : "#66B54A", color: "white" }}
-                                onClick={(e) => {
-                                    const fields = this.state.fields;
-                                    this.setState({
-                                        fields: {
-                                            ...fields,
-                                            socialNetEnabled: !fields.socialNetEnabled,
-                                        },
-                                        socialNetStatusChange: true,
-                                    });
-                                }}>
-                                {this.state.fields.socialNetEnabled ? "Disable" : "Enable"} Social Network
-                            </Button>
-                    </Form.Field>
                     <Button
                         onClick={(e) => this.onSubmit(e)}
                         style={{...styles.buttonStyle, backgroundColor: "#F4CB10"}}>

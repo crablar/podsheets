@@ -22,7 +22,7 @@ export default class Header extends React.Component<IHeaderProps, {}> {
         return (
             <Menu borderless style={style.menu} inverted>
                 <Menu.Item>
-                    <a href="/" style={{paddingTop: "5px"}}><img src="assets/podsheets-logo-2.png" style={{ height: "27px" }} /></a>
+                    <a href="/" style={{paddingTop: "5px"}}><img src="assets/podsheets-logo.png" style={{ height: "58px" }} /></a>
                 </Menu.Item>
                 <Menu.Menu position="right">
                 <Menu.Item>
@@ -32,9 +32,6 @@ export default class Header extends React.Component<IHeaderProps, {}> {
                     </Menu.Item>
                     <Menu.Item>
                         <a href="https://medium.com/podsheets-blog" style={style.navLink}>Blog</a>
-                    </Menu.Item>
-                    <Menu.Item>
-                        <a href="https://podsheets.zendesk.com/hc/en-us/articles/115001276211" style={style.navLink}>Support</a>
                     </Menu.Item>
                     <Menu.Item>
                         <Link to="/about_us" style={style.navLink}>About</Link>

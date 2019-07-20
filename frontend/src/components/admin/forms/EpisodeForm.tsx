@@ -804,6 +804,12 @@ export default class EpisodeForm extends React.Component<IEpisodeFormProps, IEpi
     @autobind
     protected onSubmit(e: React.FormEvent<Event>) {
         e.preventDefault();
+
+        if (!Boolean(this.state.fields.audioUrl)) {
+            alert("Could not save episode. Please upload an audio file.");
+            return;
+        }
+
         const fields = this.state.fields;
         fields.adPlacement = this.adPlacement;
         if (this.state.uploading && fields.audioUrl) {
