@@ -34,9 +34,6 @@ export default class Header extends React.Component<IHeaderProps, {}> {
                         <a href="https://medium.com/podsheets-blog" style={style.navLink}>Blog</a>
                     </Menu.Item>
                     <Menu.Item>
-                        <a href="https://podsheets.zendesk.com/hc/en-us/articles/115001276211" style={style.navLink}>Support</a>
-                    </Menu.Item>
-                    <Menu.Item>
                         <Link to="/about_us" style={style.navLink}>About</Link>
                     </Menu.Item>
                     <Menu.Item>
