@@ -25,11 +25,6 @@ export default class Header extends React.Component<IHeaderProps, {}> {
                     <a href="/" style={{paddingTop: "5px"}}><img src="assets/podsheets-logo.png" style={{ height: "58px" }} /></a>
                 </Menu.Item>
                 <Menu.Menu position="right">
-                <Menu.Item>
-                    <a href="https://twitter.com/podsheets">
-                        <Icon name="twitter" size="large"/>
-                    </a>
-                    </Menu.Item>
                     <Menu.Item>
                         <a href="https://medium.com/podsheets-blog" style={style.navLink}>Blog</a>
                     </Menu.Item>

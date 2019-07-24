@@ -7,6 +7,7 @@ export const colors = {
     mainULight: "#DFDEEC",
     mainVibrant: "#A471CC",
     mainLVibrant: "#9833ce",
+    mainGrey: "#525354",
     positive: "#73CAA2",
     negative: "#E83E67",
 };
