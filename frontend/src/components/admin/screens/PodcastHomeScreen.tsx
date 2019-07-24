@@ -712,7 +712,7 @@ const style = {
         height: "100%",
         position: "absolute",
         bottom: 0,
-    },
+    } as React.CSSProperties,
     productImage: {
         width: "100%",
         height: "100%",
