@@ -116,7 +116,7 @@ const style = {
         padding: "6vh",
     },
     mainTitle: {
-        color: colors.mainLVibrant,
+        color: colors.mainDark,
         fontSize: "220%",
     },
     subTitle: {

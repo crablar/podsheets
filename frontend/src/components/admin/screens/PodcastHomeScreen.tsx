@@ -90,9 +90,9 @@ export default class PodcastHomeScreen extends React.Component<IPodcastHomeScree
                         <Grid doubling stackable style={style.gridContainer}>
                             <Grid.Row style={{ paddingBottom: 0 }}>
                                 <Grid.Column style={style.platformMessageContainer} width={12}>
-                                    <div style={{ maxWidth: 500, height: 150 }}>
+                                    <div style={{ maxWidth: 500, height: 150, marginBottom: 30 }}>
                                         <h1 style={style.mainMessage}>
-                                            Podsheets is the simplest way to host and monetize your podcast
+                                            Podsheets is the open source way to host and monetize your podcast
                                         </h1>
                                     </div>
                                     <div style={{ height: 125 }}>
@@ -127,7 +127,31 @@ export default class PodcastHomeScreen extends React.Component<IPodcastHomeScree
                                 </Grid.Column>
                         </Grid.Row>
                         <Grid.Row textAlign="center" style={{ marginTop: 40 }}>
-                                <Grid.Column width={4}>
+                                <Grid.Column width={3}>
+                                    <Grid.Row textAlign="center">
+                                        <h3 style={{ ...style.podsheetsOptionsText, marginBottom: 5 }}>
+                                            Open Source
+                                        </h3>
+                                    </Grid.Row>
+                                    <Grid.Row centered textAlign="center" style={{ marginTop: 30, marginBottom: 30 }}>
+                                        <Grid.Column width={4}>
+                                            <Image
+                                                width={100 as 10}
+                                                src="assets/opensource.svg"
+                                                centered />
+                                        </Grid.Column>
+                                    </Grid.Row>
+                                    <Grid.Row style={{ marginTop: 10 }} textAlign="center">
+                                        <Grid.Row style={{
+                                            color: colors.mainDark,
+                                            marginTop: 5,
+                                            fontSize: "140%",
+                                        }} centered textAlign="center">
+                                            The only open source podcast hosting platform
+                                        </Grid.Row>
+                                    </Grid.Row>
+                                </Grid.Column>
+                                <Grid.Column width={3}>
                                     <Grid.Row textAlign="center">
                                         <h3 style={{ ...style.podsheetsOptionsText, marginBottom: 5 }}>
                                             Hosting
@@ -151,7 +175,7 @@ export default class PodcastHomeScreen extends React.Component<IPodcastHomeScree
                                         </Grid.Row>
                                     </Grid.Row>
                                 </Grid.Column>
-                                <Grid.Column width={4}>
+                                <Grid.Column width={3}>
                                     <Grid.Row textAlign="center">
                                         <h3 style={{ ...style.podsheetsOptionsText, marginBottom: 5 }}>
                                             Analytics
@@ -175,7 +199,7 @@ export default class PodcastHomeScreen extends React.Component<IPodcastHomeScree
                                         </Grid.Row>
                                     </Grid.Row>
                                 </Grid.Column>
-                                <Grid.Column width={4}>
+                                <Grid.Column width={3}>
                                     <Grid.Row textAlign="center">
                                         <h3 style={{ ...style.podsheetsOptionsText, marginBottom: 5 }}>
                                             Community
@@ -247,7 +271,7 @@ export default class PodcastHomeScreen extends React.Component<IPodcastHomeScree
                                     </Grid.Row>
                                 </Grid.Column>
                             </Grid.Row>
-                            <Grid.Row textAlign="center" style={{ marginTop: 40 }}>
+                            <Grid.Row textAlign="center" style={{ marginTop: 70 }}>
                                 <Grid.Column columns={1} width={7}>
                                     <h1 style={style.creatorText}>
                                         From the creators of
@@ -257,7 +281,9 @@ export default class PodcastHomeScreen extends React.Component<IPodcastHomeScree
                             <Grid.Row textAlign="center" style={{ marginTop: 20 }}>
                                 <Grid.Column width={4}>
                                     <a href="https://softwareengineeringdaily.com/">
-                                        <Image src="assets/software-engineering-daily.png" />
+                                        <Image
+                                            style={{ marginLeft: "auto", marginRight: "auto" }}
+                                            src="assets/software-engineering-daily.png" />
                                     </a>
                                 </Grid.Column>
                                 <Grid.Column width={4}>

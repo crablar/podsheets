@@ -26,7 +26,17 @@ export default class Header extends React.Component<IHeaderProps, {}> {
                 </Menu.Item>
                 <Menu.Menu position="right">
                     <Menu.Item>
-                        <a href="https://medium.com/podsheets-blog" style={style.navLink}>Blog</a>
+                        <a style={{ color: "white" }} href="https://findcollabs.com/project/IQNarf2tJ8Un4esfoXck">
+                            <img src="assets/collab-white.svg" style={{ height: "1.25em", marginTop: "0.25em" }} />
+                        </a>
+                    </Menu.Item>
+                    <Menu.Item>
+                        <a target="_blank" style={{ color: "white" }} href="https://github.com/crablar/podsheets">
+                            <Icon name="github" size="large"/>
+                        </a>
+                    </Menu.Item>
+                    <Menu.Item>
+                        <a target="_blank" href="https://medium.com/podsheets-blog" style={style.navLink}>Blog</a>
                     </Menu.Item>
                     <Menu.Item>
                         <Link to="/about_us" style={style.navLink}>About</Link>
