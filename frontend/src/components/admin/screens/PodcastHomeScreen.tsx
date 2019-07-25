@@ -90,220 +90,208 @@ export default class PodcastHomeScreen extends React.Component<IPodcastHomeScree
                         <Grid doubling stackable style={style.gridContainer}>
                             <Grid.Row style={{ paddingBottom: 0 }}>
                                 <Grid.Column style={style.platformMessageContainer} width={12}>
-                                    <div style={{ maxWidth: 350, height: 125 }}>
+                                    <div style={{ maxWidth: 500, height: 150, marginBottom: 30 }}>
                                         <h1 style={style.mainMessage}>
-                                            Create and manage your podcast
+                                            Podsheets is an open source platform to host and monetize your podcast
                                         </h1>
                                     </div>
+                                    <div style={{ height: 125 }}>
+                                            <Button
+                                                onClick={() => window.location.href = "/#/sign_up"}
+                                                size="large"
+                                                floated={"left"}
+                                                style={style.getStarted}>
+                                                Get Started
+                                        </Button>
+                                        </div>
                                     <div style={{ maxWidth: 350 }}>
                                         <h4 style={style.secondaryMessage}>
                                         </h4>
                                     </div>
                                 </Grid.Column>
                                 <Grid.Column mobile={4} width={8}>
-                                    <div style={{
-                                    }}>
-                                        <div style={{ height: 125 }}>
-                                            <Button
-                                                onClick={() => window.location.href = "/#/sign_up"}
-                                                size="large"
-                                                floated={"right"}
-                                                style={style.getStarted}>
-                                                Get Started
-                                        </Button>
-                                        </div>
                                         <div style={style.someImagesContainer}>
                                             <div style={style.someImagesBox}>
                                                 <img style={style.someImage} src="assets/audio-reviews-hd.png" />
                                             </div>
                                         </div>
-                                    </div>
                                 </Grid.Column>
                             </Grid.Row>
                         </Grid>
-                        <Grid style={{ padding: 30, paddingBottom: 0, paddingTop: 15 }} doubling stackable centered>
+                        <Grid style={{ padding: 20, paddingBottom: 0, paddingTop: 15 }} doubling stackable centered>
+                        <Grid.Row textAlign="center" style={{ marginTop: 40 }}>
+                                <Grid.Column columns={1} width={7}>
+                                    <h1 style={style.creatorText}>
+                                        What We Offer
+                                    </h1>
+                                </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row textAlign="center" style={{ marginTop: 40 }}>
+                                <Grid.Column width={3}>
+                                    <Grid.Row textAlign="center">
+                                        <h3 style={{ ...style.podsheetsOptionsText, marginBottom: 5 }}>
+                                            Open Source
+                                        </h3>
+                                    </Grid.Row>
+                                    <Grid.Row centered textAlign="center" style={{ marginTop: 30, marginBottom: 30 }}>
+                                        <Grid.Column width={4}>
+                                            <Image
+                                                width={100 as 10}
+                                                src="assets/opensource.svg"
+                                                centered />
+                                        </Grid.Column>
+                                    </Grid.Row>
+                                    <Grid.Row style={{ marginTop: 10 }} textAlign="center">
+                                        <Grid.Row style={{
+                                            color: colors.mainDark,
+                                            marginTop: 5,
+                                            fontSize: "140%",
+                                        }} centered textAlign="center">
+                                            Open source platform for managing your podcast
+                                        </Grid.Row>
+                                    </Grid.Row>
+                                </Grid.Column>
+                                <Grid.Column width={3}>
+                                    <Grid.Row textAlign="center">
+                                        <h3 style={{ ...style.podsheetsOptionsText, marginBottom: 5 }}>
+                                            Hosting
+                                        </h3>
+                                    </Grid.Row>
+                                    <Grid.Row centered textAlign="center" style={{ marginTop: 30, marginBottom: 30 }}>
+                                        <Grid.Column width={4}>
+                                            <Image
+                                                width={100 as 10}
+                                                src="assets/headphones.svg"
+                                                centered />
+                                        </Grid.Column>
+                                    </Grid.Row>
+                                    <Grid.Row style={{ marginTop: 10 }} textAlign="center">
+                                        <Grid.Row style={{
+                                            color: colors.mainDark,
+                                            marginTop: 5,
+                                            fontSize: "140%",
+                                        }} centered textAlign="center">
+                                            One click publishing across all podcast players
+                                        </Grid.Row>
+                                    </Grid.Row>
+                                </Grid.Column>
+                                <Grid.Column width={3}>
+                                    <Grid.Row textAlign="center">
+                                        <h3 style={{ ...style.podsheetsOptionsText, marginBottom: 5 }}>
+                                            Analytics
+                                        </h3>
+                                    </Grid.Row>
+                                    <Grid.Row centered textAlign="center" style={{ marginTop: 30, marginBottom: 30 }}>
+                                        <Grid.Column width={4}>
+                                            <Image
+                                                width={100 as 10}
+                                                src="assets/analytics.svg"
+                                                centered />
+                                        </Grid.Column>
+                                    </Grid.Row>
+                                    <Grid.Row style={{ marginTop: 10 }} textAlign="center">
+                                        <Grid.Row style={{
+                                            color: colors.mainDark,
+                                            marginTop: 10,
+                                            fontSize: "140%",
+                                        }} centered textAlign="center">
+                                            Detailed analytics on downloads & episode popularity
+                                        </Grid.Row>
+                                    </Grid.Row>
+                                </Grid.Column>
+                                <Grid.Column width={3}>
+                                    <Grid.Row textAlign="center">
+                                        <h3 style={{ ...style.podsheetsOptionsText, marginBottom: 5 }}>
+                                            Community
+                                        </h3>
+                                    </Grid.Row>
+                                    <Grid.Row centered textAlign="center" style={{ marginTop: 30, marginBottom: 30 }}>
+                                        <Grid.Column width={4}>
+                                            <Image
+                                                width={100 as 10}
+                                                src="assets/community.svg"
+                                                centered />
+                                        </Grid.Column>
+                                    </Grid.Row>
+                                    <Grid.Row style={{ marginTop: 10, paddingBottom: "40px" }} textAlign="center">
+                                        <Grid.Row style={{
+                                            color: colors.mainDark,
+                                            marginTop: 5,
+                                            fontSize: "140%",
+                                        }} centered textAlign="center">
+                                            Connect with a community of experienced podcasters
+                                        </Grid.Row>
+                                    </Grid.Row>
+                                </Grid.Column>
+                            </Grid.Row>
                             <Grid.Row textAlign="center" style={{ marginTop: 40 }}>
+                                <Grid.Column columns={1} width={7}>
+                                    <h1 style={style.creatorText}>
+                                        The Platform
+                                    </h1>
+                                </Grid.Column>
+                        </Grid.Row>
+                            <Grid.Row style={{ marginTop: 80 }}>
+                                <Grid.Column width={5}>
+                                    <Grid.Row >
+                                        <h3 style={{textAlign: "left", color: colors.mainDark, marginBottom: 5 , marginTop: "2vw", fontWeight: 600 as 600, fontSize: "150%"}}>
+                                            Intuitive and fast
+                                        </h3>
+                                        <Grid.Row textAlign="left" style={{ color: colors.mainDark}}>
+                                         <div style={{textAlign: "left", paddingTop: "20px", fontSize: "130%", lineHeight: "25px"}}>
+                                         With just a podcast title, cover image, and an audio file, publish your podcast to iTunes, Google Play and all other players
+                                         <br/><br/>
+                                         Migrate your podcasts from other hosting providers with one click RSS imports
+                                        </div>
+                                        </Grid.Row>
+                                    </Grid.Row>
+                                </Grid.Column>
+                                <Grid.Column width={1}></Grid.Column>
+                                <Grid.Column width={6}>
+                                    <img style={style.productImage} src="assets/podcast-episodes.png" />
+                                </Grid.Column>
+                            </Grid.Row>
+                            <Grid.Row style={{ marginTop: 80 }}>
+                                <Grid.Column width={6}>
+                                    <img style={style.productImage} src="assets/audio-reviews.png" />
+                                </Grid.Column>
+                                <Grid.Column width={1}></Grid.Column>
+                                <Grid.Column width={5}>
+                                    <Grid.Row>
+                                        <h3 style={{ textAlign: "left", color: colors.mainDark, marginBottom: 5 , marginTop: "2vw", fontWeight: 600 as 600, fontSize: "150%"}}>
+                                           Your podcast on the web
+                                        </h3>
+                                        <Grid.Row textAlign="left" style={{ color: colors.mainDark}}>
+                                        <div style={{textAlign: "left", paddingTop: "20px", fontSize: "130%", lineHeight: "25px"}}>
+                                         Forget fumbling to create a separate website for your podcast.<br/><br/>
+                                         Customize a simple website, your home on the web, where your episodes will be posted automatically.<br/><br/>
+                                         Invite your team to collaborate.
+                                        </div>
+                                        </Grid.Row>
+                                    </Grid.Row>
+                                </Grid.Column>
+                            </Grid.Row>
+                            <Grid.Row textAlign="center" style={{ marginTop: 90 }}>
                                 <Grid.Column columns={1} width={7}>
                                     <h1 style={style.creatorText}>
                                         From the creators of
                                     </h1>
                                 </Grid.Column>
                             </Grid.Row>
-                            <Grid.Row textAlign="center" style={{ marginTop: 20 }}>
+                            <Grid.Row textAlign="center" style={{ marginTop: 20}}>
                                 <Grid.Column width={4}>
                                     <a href="https://softwareengineeringdaily.com/">
-                                        <Image src="assets/software-engineering-daily.png" />
+                                        <Image
+                                            style={{ marginLeft: "auto", marginRight: "auto" }}
+                                            src="assets/software-engineering-daily.png" />
                                     </a>
                                 </Grid.Column>
-                                <Grid.Column width={2}>
+                                <Grid.Column width={4}>
                                     <a href="https://thewomenintechshow.com/">
                                         <Image
                                             style={{ marginLeft: "auto", marginRight: "auto" }}
                                             src="assets/the-women-in-tech-show.png" />
                                     </a>
-                                </Grid.Column>
-                            </Grid.Row>
-                            <Grid.Row textAlign="center" style={{ marginTop: 80 }}>
-                                <Grid.Column columns={1} width={16}>
-                                    <h1 style={style.creatorText}>
-                                        Welcome to Podsheets, built by podcasters for podcasters!
-                                    </h1>
-                                    <br/>
-                                    <p style={style.creatorText}>
-                                        <h2 style={style.creatorText}>Free for alpha users!</h2>
-                                    </p>
-                                </Grid.Column>
-                            </Grid.Row>
-                            <Grid.Row style={{ marginTop: 80 }}>
-                                <Grid.Column width={8}>
-                                    <img style={style.productImage} src="assets/podcast-episodes.png" />
-                                </Grid.Column>
-                                <Grid.Column width={4}>
-                                    <Grid.Row >
-                                        <h3 style={{textAlign: "left", color: colors.mainDark, marginBottom: 5 , marginTop: "2vw", fontWeight: 300 as 300, fontSize: "150%"}}>
-                                            Intuitive and fast
-                                        </h3>
-                                        <Grid.Row textAlign="left" style={{ color: colors.mainDark}}>
-                                         <div style={{textAlign: "left", paddingTop: "20px", fontSize: "110%", lineHeight: "25px"}}>
-                                         With just a podcast title, graphic, and an audio file, publish your podcast to iTunes and Google Play.
-                                        </div>
-                                        </Grid.Row>
-                                    </Grid.Row>
-                                </Grid.Column>
-                            </Grid.Row>
-                            <Grid.Row style={{ marginTop: 80 }}>
-                                <Grid.Column width={8}>
-                                    <img style={style.productImage} src="assets/audio-reviews.png" />
-                                </Grid.Column>
-                                <Grid.Column width={4}>
-                                    <Grid.Row>
-                                        <h3 style={{ textAlign: "left", color: colors.mainDark, marginBottom: 5 , marginTop: "2vw", fontWeight: 300 as 300, fontSize: "150%"}}>
-                                           Your podcast on the web
-                                        </h3>
-                                        <Grid.Row textAlign="left" style={{ color: colors.mainDark}}>
-                                        <div style={{textAlign: "left", paddingTop: "20px", fontSize: "110%", lineHeight: "25px"}}>
-                                         Forget fumbling to create a separate website for your podcast.
-                                         Customize a simple website, your home on the web, where your episodes will be posted automatically.
-                                         Invite friends to collaborate.
-                                        </div>
-                                        </Grid.Row>
-                                    </Grid.Row>
-                                </Grid.Column>
-                            </Grid.Row>
-                            <Grid.Row textAlign="center" style={{ marginTop: 70 }}>
-                                <Grid.Column width={4}>
-                                    <Grid.Row textAlign="center">
-                                        <h3 style={{ ...style.podsheetsOptionsText, marginBottom: 5 }}>
-                                            Hosting
-                                        </h3>
-                                    </Grid.Row>
-                                    <Grid.Row centered textAlign="center">
-                                        <Grid.Column width={4}>
-                                            <Image
-                                                width={100 as 10}
-                                                src="assets/headphones-purple.svg"
-                                                centered />
-                                        </Grid.Column>
-                                    </Grid.Row>
-                                    <Grid.Row style={{ marginTop: 10 }} textAlign="center">
-                                        <Grid.Row style={{
-                                            color: colors.mainLVibrant,
-                                            marginTop: 5,
-                                            fontSize: "140%",
-                                        }} centered textAlign="center">
-                                            Create a website for your podcast
-                                        </Grid.Row>
-                                        <Grid.Row style={{
-                                            color: colors.mainLVibrant,
-                                            marginTop: 10,
-                                            fontSize: "140%",
-                                        }} centered textAlign="center">
-                                            Upload audio for your episodes
-                                        </Grid.Row>
-                                        <Grid.Row style={{
-                                            color: colors.mainLVibrant,
-                                            marginTop: 10,
-                                            fontSize: "140%",
-                                        }} centered textAlign="center">
-                                            iTunes and Google Play ready
-                                        </Grid.Row>
-                                    </Grid.Row>
-                                </Grid.Column>
-                                <Grid.Column width={4}>
-                                    <Grid.Row textAlign="center">
-                                        <h3 style={{ ...style.podsheetsOptionsText, marginBottom: 5 }}>
-                                            Analytics
-                                        </h3>
-                                    </Grid.Row>
-                                    <Grid.Row centered textAlign="center">
-                                        <Grid.Column width={4}>
-                                            <Image
-                                                width={100 as 10}
-                                                src="assets/stats-purple.svg"
-                                                centered />
-                                        </Grid.Column>
-                                    </Grid.Row>
-                                    <Grid.Row style={{ marginTop: 10 }} textAlign="center">
-                                        <Grid.Row style={{
-                                            color: colors.mainLVibrant,
-                                            marginTop: 5,
-                                            fontSize: "140%",
-                                        }} centered textAlign="center">
-                                            Interactive visualization
-                                        </Grid.Row>
-                                        <Grid.Row style={{
-                                            color: colors.mainLVibrant,
-                                            marginTop: 10,
-                                            fontSize: "140%",
-                                        }} centered textAlign="center">
-                                            Number of downloads
-                                        </Grid.Row>
-                                        <Grid.Row style={{
-                                            color: colors.mainLVibrant,
-                                            marginTop: 10,
-                                            fontSize: "140%",
-                                        }} centered textAlign="center">
-                                            Episode popularity
-                                        </Grid.Row>
-                                    </Grid.Row>
-                                </Grid.Column>
-                                <Grid.Column width={4}>
-                                    <Grid.Row textAlign="center">
-                                        <h3 style={{ ...style.podsheetsOptionsText, marginBottom: 5 }}>
-                                            Support
-                                        </h3>
-                                    </Grid.Row>
-                                    <Grid.Row centered textAlign="center">
-                                        <Grid.Column width={4}>
-                                            <Image
-                                                width={100 as 10}
-                                                src="assets/people-purple.svg"
-                                                centered />
-                                        </Grid.Column>
-                                    </Grid.Row>
-                                    <Grid.Row style={{ marginTop: 10, paddingBottom: "40px" }} textAlign="center">
-                                        <Grid.Row style={{
-                                            color: colors.mainLVibrant,
-                                            marginTop: 5,
-                                            fontSize: "140%",
-                                        }} centered textAlign="center">
-                                            Improve your content and audio
-                                        </Grid.Row>
-                                        <Grid.Row style={{
-                                            color: colors.mainLVibrant,
-                                            marginTop: 10,
-                                            fontSize: "140%",
-                                        }} centered textAlign="center">
-                                            Learn from other podcasters
-                                        </Grid.Row>
-                                        <Grid.Row style={{
-                                            color: colors.mainLVibrant,
-                                            marginTop: 10,
-                                            fontSize: "140%",
-                                        }} centered textAlign="center">
-                                            Identify your podcast style
-                                        </Grid.Row>
-                                    </Grid.Row>
                                 </Grid.Column>
                             </Grid.Row>
                             <Grid.Row style={{
@@ -707,12 +695,13 @@ const style = {
         display: "flex",
         flex: 1,
         flexDirection: "column",
+        marginTop: "2em",
     },
     mainMessage: {
         color: "white",
         textAlign: "left",
         fontSize: "250%",
-        fontWeight: 100 as 100,
+        fontWeight: 200 as 200,
     },
     secondaryMessage: {
         color: "white",
@@ -730,8 +719,9 @@ const style = {
         background: "linear-gradient(to right, #2740a8 0%,#c190d9 79%)",
     },
     getStarted: {
-        backgroundColor: "#88CB49",
+        backgroundColor: "#5FC67A",
         color: "white",
+        fontSize: "1.25em",
     },
     someImagesContainer: {
         display: "flex",
@@ -746,19 +736,20 @@ const style = {
     },
     someImage: {
         width: "100%",
-        height: "100%",
-    },
+        height: "auto",
+        position: "absolute",
+        bottom: 0,
+    } as React.CSSProperties,
     productImage: {
         width: "100%",
-        height: "100%",
-        border: "solid",
-        borderWidth: "1px",
-        borderColor: "#B7B5B4",
+        height: "auto",
+        border: "none",
+        boxShadow: "2px 3px 10px 3px #e6e6e6",
     },
     creatorText: {
         aligSelf: "center",
         color: colors.mainLVibrant,
-        fontWeight: 100 as 100,
+        fontWeight: 900 as 900,
     },
     podsheetText: {
         marginTop: "2vw",
@@ -768,8 +759,9 @@ const style = {
     },
     podsheetsOptionsText: {
         marginTop: "2vw",
-        color: colors.mainLVibrant,
-        fontWeight: 400 as 400,
+        marginBottom: "2vw",
+        color: colors.mainDark,
+        fontWeight: 600 as 600,
         fontSize: "190%",
     },
     positiveText: {

@@ -82,3 +82,7 @@ input::-webkit-inner-spin-button {
 .ui.selection.dropdown>.search.icon {
     top: none;
 }
+
+.ui.grid {
+    margin: 0 !important;
+}
