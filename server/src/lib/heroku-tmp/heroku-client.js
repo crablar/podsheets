@@ -5,7 +5,7 @@ const podsheetsSocialPipeline = process.env.POD_SOCIAL_PIPELINE;
 var fs = require('fs');
 var readline = require('readline');
 const MongoClient = require('mongodb').MongoClient;
-const mongoHost = process.env.MONGODB_URI_POD_SOCIAL;
+const mongoHost = process.env.MONGODB_URI;
 const mongoDatabaseName = mongoHost.substring(mongoHost.lastIndexOf('/') + 1, mongoHost.length);
 
 function createApp() {
