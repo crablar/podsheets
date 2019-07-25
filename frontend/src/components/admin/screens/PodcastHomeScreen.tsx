@@ -92,7 +92,7 @@ export default class PodcastHomeScreen extends React.Component<IPodcastHomeScree
                                 <Grid.Column style={style.platformMessageContainer} width={12}>
                                     <div style={{ maxWidth: 500, height: 150, marginBottom: 30 }}>
                                         <h1 style={style.mainMessage}>
-                                            Podsheets is the open source way to host and monetize your podcast
+                                            Podsheets is an open source platform to host and monetize your podcast
                                         </h1>
                                     </div>
                                     <div style={{ height: 125 }}>
@@ -147,7 +147,7 @@ export default class PodcastHomeScreen extends React.Component<IPodcastHomeScree
                                             marginTop: 5,
                                             fontSize: "140%",
                                         }} centered textAlign="center">
-                                            The only open source podcast hosting platform
+                                            Open source platform for managing your podcast
                                         </Grid.Row>
                                     </Grid.Row>
                                 </Grid.Column>
@@ -271,14 +271,14 @@ export default class PodcastHomeScreen extends React.Component<IPodcastHomeScree
                                     </Grid.Row>
                                 </Grid.Column>
                             </Grid.Row>
-                            <Grid.Row textAlign="center" style={{ marginTop: 70 }}>
+                            <Grid.Row textAlign="center" style={{ marginTop: 90 }}>
                                 <Grid.Column columns={1} width={7}>
                                     <h1 style={style.creatorText}>
                                         From the creators of
                                     </h1>
                                 </Grid.Column>
                             </Grid.Row>
-                            <Grid.Row textAlign="center" style={{ marginTop: 20 }}>
+                            <Grid.Row textAlign="center" style={{ marginTop: 20}}>
                                 <Grid.Column width={4}>
                                     <a href="https://softwareengineeringdaily.com/">
                                         <Image
@@ -735,13 +735,14 @@ const style = {
         paddingTop: 15,
     },
     someImage: {
-        height: "100%",
+        width: "100%",
+        height: "auto",
         position: "absolute",
         bottom: 0,
     } as React.CSSProperties,
     productImage: {
         width: "100%",
-        height: "100%",
+        height: "auto",
         border: "none",
         boxShadow: "2px 3px 10px 3px #e6e6e6",
     },
