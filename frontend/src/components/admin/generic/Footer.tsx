@@ -13,7 +13,7 @@ export default class Footer extends React.Component<{}, {}> {
                     padding: 25,
                     color: "white",
                     width: "33%",
-                    textAlign: "left"
+                    textAlign: "left",
                 }} >
                     Built with <span><Icon name="heart" style={{ color: "red" }} size="small"/></span>for podcasters by podcasters
                 </div>
@@ -22,7 +22,7 @@ export default class Footer extends React.Component<{}, {}> {
                     paddingBottom: 25,
                     color: "white",
                     width: "33%",
-                    textAlign: "center"
+                    textAlign: "center",
                 }} >
                     Copyright © 2019 Podsheets, <Link style={{ color: "white" }} to="/terms">Terms of use</Link>
                 </div>
@@ -31,7 +31,7 @@ export default class Footer extends React.Component<{}, {}> {
                     padding: 25,
                     color: "white",
                     width: "33%",
-                    textAlign: "right"
+                    textAlign: "right",
                 }}>
                     <a style={{ color: "white", paddingRight: "5em" }} href="https://twitter.com/podsheets">
                         <Icon name="twitter" size="large"/>
