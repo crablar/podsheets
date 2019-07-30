@@ -40,12 +40,12 @@ async function getSelectedPodcast(userId) {
 
 const getPlanId = (storageAmount) => {
     switch (storageAmount) {
-        case 200:
+        case 300:
             return "basic-monthly";
-        case 500:
-            return "advanced-monthly";
         case 1000:
-            return "social-monthly";
+            return "intermediate-monthly";
+        case 2500:
+            return "advanced-monthly";
     }
 };
 
@@ -62,6 +62,17 @@ stripe.plans.create({
     // asynchronously called
 });
 
+// Intermediate Plan
+stripe.plans.create({
+    name: "Intermediate Plan",
+    id: "intermediate-monthly",
+    interval: "month",
+    currency: "usd",
+    amount: 1000,
+}, function (err, plan) {
+    // asynchronously called
+});
+
 // Advanced Plan
 stripe.plans.create({
     name: "Advanced Plan",
@@ -69,17 +80,6 @@ stripe.plans.create({
     interval: "month",
     currency: "usd",
     amount: 2000,
-}, function (err, plan) {
-    // asynchronously called
-});
-
-// Social Plan
-stripe.plans.create({
-    name: "Social Plan",
-    id: "social-monthly",
-    interval: "month",
-    currency: "usd",
-    amount: 3000,
 }, (err, plan) => {
     return;
 });
@@ -166,6 +166,7 @@ export default (router: express.Router) => {
 
                     const fields = {
                         "subscription.data.canceled_at": confirmation.canceled_at,
+                        "subscription.storageLimit": 100, // Resetting to free tier
                     };
 
                     // tslint:disable-next-line:max-line-length
@@ -175,10 +176,7 @@ export default (router: express.Router) => {
                             console.warn("ERROR", error);
                             return res.sendStatus(403).send(error.message);
                         }
-                        const updatedPodcast = JSON.parse(JSON.stringify(podcast));
-                        if (!(updatedPodcast.subscription as any).data.canceled_at) {
-                            (updatedPodcast.subscription as any).data.canceled_at = confirmation.canceled_at;
-                        }
+                        const updatedPodcast = JSON.parse(JSON.stringify({podcast}));
                         res.json({ podcast: updatedPodcast });
                     });
 
