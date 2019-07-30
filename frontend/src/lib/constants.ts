@@ -1,16 +1,15 @@
 export const storage = {
-    // TO-DO: decrease free storage upon subscription activation
-    free: 10000,
-    basic: 200,
-    advanced: 500,
-    social: 1000,
+    free: 100,
+    basic: 300,
+    intermediate: 1000,
+    advanced: 2500,
 };
 
 export const price = {
     free: 0,
     basic: 5,
+    intermediate: 10,
     advanced: 20,
-    social: 30,
 };
 
 export const allowedItunesCategories: { [key: string]: string[] } = {
