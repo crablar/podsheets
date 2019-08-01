@@ -22,9 +22,10 @@ import AdForm from "./AdForm";
 import "react-day-picker/lib/style.css";
 
 const summaryPlaceholder =
-    `This is what appears on iTunes for the episode.
-Keep this short and interesting so that people click to listen.`
-    ;
+    `This is what appears on iTunes for the episode. Keep this short and interesting so that people click to listen.`;
+
+const showNotesPlaceholder = 
+    `Add a full description of your episode for the podcast website. Include images or videos.`
 
 const fullContentPlaceholder =
     `Add information about the episode, show notes, additional links.
@@ -196,42 +197,182 @@ export default class EpisodeForm extends React.Component<IEpisodeFormProps, IEpi
         return (
             <Segment style={{ paddingBottom: 25 }} basic>
                 <Form onSubmit={this.onSubmit} enctype="multipart/form-data">
+                    {this.props.rootState.env.AUDIO_EDITOR === "true" ?
+                        <Menu style={{ width: "75%" }} tabular>
+                            <Menu.Item
+                                name="Episode"
+                                active={!this.state.editingAudio}
+                                onClick={(e, { name }) => this.handleItemClick(e, name)} />
+                            <Menu.Item
+                                name="Audio Editor"
+                                active={this.state.editingAudio}
+                                onClick={(e, { name }) => this.handleItemClick(e, name)} />
+                        </Menu>
+                        :
+                        null
+                    }
+                    {this.props.rootState.podcast.advertisingEnabled ?
+                        <Menu style={{ width: "75%" }} tabular>
+                            <Menu.Item
+                                name="Episode"
+                                active={this.state.section === "Episode"}
+                                onClick={(e, { section }) => this.setState({ section: "Episode" })} />
+                            <Menu.Item
+                                name="Ad Placements"
+                                active={this.state.section === "Ad Placements"}
+                                onClick={(e, { section }) => this.setState({ section: "Ad Placements" })} />
+                        </Menu>
+                        :
+                        null
+                    }
+                    <div style={{
+                        width: "100%",
+                        display: !this.state.editingAudio ? "none" : "flex",
+                        flex: 1,
+                        justifyContent: "flex-start",
+                    }}>
+                        {/*<AudioEditor
+                            onAudio={(file) => this.setState({ renderedFile: file })} />*/}
+                    </div>
+                    <div style={{
+                        width: "100%",
+                        display: this.state.section === "Ad Placements" ? "flex" : "none",
+                        flex: 1,
+                        justifyContent: "flex-start",
+                    }}>
+                        {/*<AdForm
+                            adPlacement={this.props.currentEpisode.adPlacement} onChange={(adPlacement) => {
+                            const fields = this.state.fields;
+                            this.adPlacement = adPlacement;
+                        }} episodeState={this.state} />*/}
+                    </div>
+                    <div style={{
+                        display: this.state.section === "Episode" ? "block" : "none",
+                    }}>
+                        <div style={style.formLabel}>Title</div>
+                        <Form.Group>
+                            <Form.Input
+                                placeholder="New Episode Title"
+                                width="12"
+                                name="title"
+                                style={style.titleInput}
+                                value={this.state.fields.title}
+                                onChange={this.onChangeInputField}
+                                required />
+                        </Form.Group>
+                        {!!uploadError ?
+                            <div style={{ color: "tomato" }}>
+                                {uploadError}
+                            </div>
+                            :
+                            null
+                        }
+                        <div style={{ marginTop: 50 }}>
+                        <div style={style.formLabel}>Audio File</div>
+                        <Segment style={style.uploadSegment} disabled={this.state.uploading} basic>
+                            <div style={{
+                                display: "flex",
+                                flex: 1,
+                                flexDirection: "row",
+                                alignItems: "center",
+                                marginBottom: 15,
+                            }}>
+                                <Form.Field style={{
+                                    display: "flex",
+                                    flexDirection: "row",
+                                    width: "75%",
+                                    alignItems: "center",
+                                }} inline>
+                                    <input disabled={uploadDisabled} id={"episodeFormFileInput"} onChange={this.onFileInput} type="file" />
+                                </Form.Field>
+                                {this.state.renderedFile ?
+                                    <Button
+                                        onClick={(e) => this.onUploadFromEditor(e)}
+                                        style={{
+                                            marginLeft: -165,
+                                            backgroundColor: colors.mainDark,
+                                            color: "white",
+                                        }}>Upload From Editor</Button>
+                                    :
+                                    null}
+                            </div>
+                            {this.renderUploadProgressBar()}
+                            {this.state.fields.audioUrl || uploadUrl ?
+                                <div>
+                                    <Icon name="attach" size="big" />
+                                    <strong>{fileName}</strong>
+                                </div>
+                                :
+                                null
+                            }
+                            <Form.Input
+                                style={{ display: "none" }}
+                                width="12"
+                                name="audioUrl"
+                                placeholder="Audio URL Generated from Google Cloud Storage"
+                                value={this.state.fields.audioUrl}
+                                readOnly
+                                disabled={this.state.uploading} />
+                        </Segment>
+                        </div>
+                        <div style={{ marginTop: 50 }} className="formBoxInput">
+                        <div style={style.formLabel}>Description</div> 
+                            <Form.Field
+                                style={{ height: 120 }}
+                                control={TextArea}
+                                width="12"
+                                name="summary"
+                                placeholder={summaryPlaceholder}
+                                value={this.state.fields.summary}
+                                onChange={this.onChangeInputField} />
+                            <div style={{ width: "75%", marginTop: 50 }}>
+                            <div style={style.formLabel}>Show Notes</div>
+                                <div style={{ height: 320 }}>
+                                    <ReactQuill
+                                        ref={(component) => {
+                                            if (component) {
+                                                this.quill = component.getEditor();
+                                            }
+                                        }}
+                                        style={{ height: 250 }}
+                                        theme="snow"
+                                        modules={this.modules}
+                                        placeholder={showNotesPlaceholder}
+                                        formats={this.formats}
+                                        value={this.state.fields.fullContent}
+                                        onChange={this.onChangeContentField} />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <Form.Group style={{ width: "75%" }}>
                         <div style={{
                             display: "flex",
                             flex: 1,
-                            justifyContent: "center" as "center",
+                            justifyContent: "flex-start" as "flex-start",
                         }}>
                             <Popup
                                 trigger={
-                                    <Form.Button onClick={
-                                        this.onPreview(this.state.fields)
-                                    } style={style.previewIcon} icon>
-                                        <Icon size="large" name="eye" />
-                                    </Form.Button>}
+                                    <Button
+                                            style={{ marginTop: "1em", fontWeight: 550, fontSize: "120%", color: "#787878", backgroundColor: "white", border: "solid 0.1em #E6E6E6"}}>
+                                            Save
+                                    </Button>}
                                 style={style.tooltip}
                                 basic
                                 size="tiny"
-                                content="Preview" />
+                                content="Save changes to your podcast episode" />
                             {this.renderPublishButton()}
-                            <Popup
+                            {!(this.props.currentEpisode && this.props.currentEpisode.published) && <Popup
                                 trigger={
                                     <span>
-                                        <Popup
-                                            trigger={
-                                                <Form.Button
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        this.setState({ pickingDate: true });
-                                                    }}
-                                                    style={style.calendarIcon}
-                                                    >
-                                                    <Icon size="large" name="calendar" />
-                                                </Form.Button>}
-                                            style={style.tooltip}
-                                            basic
-                                            size="tiny"
-                                            content="Schedule" />
+                                        <Button
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                this.setState({ pickingDate: true });
+                                            }}
+                                            style={{ marginTop: "1em", fontWeight: 550, fontSize: "120%", color: "#5FC67A", backgroundColor: "white", border: "solid 0.1em #5FC67A"}}>
+                                            Schedule
+                                        </Button>
                                     </span>}
                                 style={style.calendarTooltip}
                                 on="click"
@@ -341,165 +482,20 @@ export default class EpisodeForm extends React.Component<IEpisodeFormProps, IEpi
                                                 positive>Schedule</Button>
                                         </Segment>
                                     </div>
-                                } />
-                            <Popup
+                                } />}
+                                <Popup
                                 trigger={
-                                    <Form.Button style={style.actionIcon} icon>
-                                        <Icon size="large" name="save" />
-                                    </Form.Button>}
+                                    <Button
+                                        onClick={this.onPreview(this.state.fields)}
+                                        style={{ marginTop: "1em", fontWeight: 550, fontSize: "120%", color: "#6B7BE1", backgroundColor: "white", border: "solid 0.1em #6B7BE1"}}>
+                                        Preview
+                                    </Button>}
                                 style={style.tooltip}
                                 basic
                                 size="tiny"
-                                content="Save" />
+                                content="Preview the episode on your website" />
                         </div>
                     </Form.Group>
-                    {this.props.rootState.env.AUDIO_EDITOR === "true" ?
-                        <Menu style={{ width: "75%" }} tabular>
-                            <Menu.Item
-                                name="Episode"
-                                active={!this.state.editingAudio}
-                                onClick={(e, { name }) => this.handleItemClick(e, name)} />
-                            <Menu.Item
-                                name="Audio Editor"
-                                active={this.state.editingAudio}
-                                onClick={(e, { name }) => this.handleItemClick(e, name)} />
-                        </Menu>
-                        :
-                        null
-                    }
-                    {this.props.rootState.podcast.advertisingEnabled ?
-                        <Menu style={{ width: "75%" }} tabular>
-                            <Menu.Item
-                                name="Episode"
-                                active={this.state.section === "Episode"}
-                                onClick={(e, { section }) => this.setState({ section: "Episode" })} />
-                            <Menu.Item
-                                name="Ad Placements"
-                                active={this.state.section === "Ad Placements"}
-                                onClick={(e, { section }) => this.setState({ section: "Ad Placements" })} />
-                        </Menu>
-                        :
-                        null
-                    }
-                    <div style={{
-                        width: "100%",
-                        display: !this.state.editingAudio ? "none" : "flex",
-                        flex: 1,
-                        justifyContent: "flex-start",
-                    }}>
-                        {/*<AudioEditor
-                            onAudio={(file) => this.setState({ renderedFile: file })} />*/}
-                    </div>
-                    <div style={{
-                        width: "100%",
-                        display: this.state.section === "Ad Placements" ? "flex" : "none",
-                        flex: 1,
-                        justifyContent: "flex-start",
-                    }}>
-                        {/*<AdForm
-                            adPlacement={this.props.currentEpisode.adPlacement} onChange={(adPlacement) => {
-                            const fields = this.state.fields;
-                            this.adPlacement = adPlacement;
-                        }} episodeState={this.state} />*/}
-                    </div>
-                    <div style={{
-                        display: this.state.section === "Episode" ? "block" : "none",
-                    }}>
-                        <Form.Group>
-                            <Form.Input
-                                className="formUnderlineInput"
-                                placeholder="New Episode Title"
-                                width="12"
-                                name="title"
-                                style={style.titleInput}
-                                value={this.state.fields.title}
-                                onChange={this.onChangeInputField}
-                                required />
-                        </Form.Group>
-                        {!!uploadError ?
-                            <div style={{ color: "tomato" }}>
-                                {uploadError}
-                            </div>
-                            :
-                            null
-                        }
-                        <Segment style={style.uploadSegment} disabled={this.state.uploading} basic>
-                            <div style={{
-                                display: "flex",
-                                flex: 1,
-                                flexDirection: "row",
-                                alignItems: "center",
-                                marginBottom: 15,
-                            }}>
-                                <Form.Field style={{
-                                    display: "flex",
-                                    flexDirection: "row",
-                                    width: "75%",
-                                    alignItems: "center",
-                                }} inline>
-                                    <label>Audio</label>
-                                    <input disabled={uploadDisabled} id={"episodeFormFileInput"} onChange={this.onFileInput} type="file" />
-                                </Form.Field>
-                                {this.state.renderedFile ?
-                                    <Button
-                                        onClick={(e) => this.onUploadFromEditor(e)}
-                                        style={{
-                                            marginLeft: -165,
-                                            backgroundColor: colors.mainDark,
-                                            color: "white",
-                                        }}>Upload From Editor</Button>
-                                    :
-                                    null}
-                            </div>
-                            {this.renderUploadProgressBar()}
-                            {this.state.fields.audioUrl || uploadUrl ?
-                                <div>
-                                    <Icon name="attach" size="big" />
-                                    <strong>{fileName}</strong>
-                                </div>
-                                :
-                                null
-                            }
-                            <Form.Input
-                                style={{ display: "none" }}
-                                width="12"
-                                name="audioUrl"
-                                placeholder="Audio URL Generated from Google Cloud Storage"
-                                value={this.state.fields.audioUrl}
-                                readOnly
-                                disabled={this.state.uploading} />
-                        </Segment>
-                        <div style={{ marginTop: 30 }} className="formBoxInput">
-                            <Form.Field
-                                style={{ height: 120 }}
-                                control={TextArea}
-                                width="12"
-                                name="summary"
-                                placeholder={summaryPlaceholder}
-                                value={this.state.fields.summary}
-                                onChange={this.onChangeInputField} />
-                            <div style={{ width: "75%", marginTop: 30 }}>
-                                <div style={style.fullContentLabel}>Add a full description of your episode
-                                for the podcast website.
-                                Include images or videos.
-                            </div>
-                                <div style={{ height: 320 }}>
-                                    <ReactQuill
-                                        ref={(component) => {
-                                            if (component) {
-                                                this.quill = component.getEditor();
-                                            }
-                                        }}
-                                        style={{ height: 250 }}
-                                        theme="snow"
-                                        modules={this.modules}
-                                        formats={this.formats}
-                                        value={this.state.fields.fullContent}
-                                        onChange={this.onChangeContentField} />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </Form>
                 <Modal modalStyle={style.previewModal} ref="modal" keyboard={(e: any) => this.callback(e)}>
                     <div style={style.previewHeader}>
@@ -663,36 +659,22 @@ export default class EpisodeForm extends React.Component<IEpisodeFormProps, IEpi
         const episode = this.props.currentEpisode;
         if (episode && episode.published) {
             return (
-                <Popup
-                    trigger={
-                        <Button
-                            style={style.unpublishIcon}
-                            onClick={this.onUnpublishItem(this.state.fields)}>
-                            <Icon style={{ marginRight: 0 }} size="large" name="delete calendar" />
-                        </Button>}
-                    style={style.tooltip}
-                    basic
-                    size="tiny"
-                    content="Unpublish" />
+                <Button
+                    onClick={this.onUnpublishItem(this.state.fields)}
+                    style={{ marginTop: "1em", fontWeight: 550, fontSize: "120%", color: "#C95959", backgroundColor: "white", border: "solid 0.1em #C95959"}}>
+                    Unpublish
+                </Button>
             );
         }
         const { title, summary, fullContent, audioUrl, uploadUrl } = this.state.fields;
         const shouldDisablePublish = false; // !(title && summary && (audioUrl || uploadUrl));
         return (
-            <Popup
-                trigger={
-                    <span>
-                        <Button
-                            style={style.publishIcon}
-                            onClick={this.onPublishItem(this.state.fields)}
-                            disabled={shouldDisablePublish}>
-                            <Icon style={{ marginRight: 0 }} size="large" name="external share" />
-                        </Button>
-                    </span>}
-                style={style.tooltip}
-                basic
-                size="tiny"
-                content="Publish" />
+                <Button
+                    style={{ marginTop: "1em", fontWeight: 550, fontSize: "120%", color: "white", backgroundColor: "#6B7BE1"}}
+                    onClick={this.onPublishItem(this.state.fields)}
+                    disabled={shouldDisablePublish}>
+                    Publish
+                </Button>
         );
     }
 
@@ -877,11 +859,22 @@ const style = {
         marginBottom: -10,
         marginLeft: 15,
     },
+    formLabel: {
+        display: "flex",
+        minWidth: 80,
+        textAlign: "left",
+        fontSize: "120%" as "120%",
+        color: colors.mainDark,
+        fontWeight: 600,
+        marginBottom: 15,
+        marginTop: 40,
+    } as React.CSSProperties,
     calendarTooltip: {
     },
     titleInput: {
         color: colors.mainDark,
         borderStyle: "none",
+        height: 40,
     },
     fullContentLabel: {
         fontSize: "120%",

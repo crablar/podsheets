@@ -76,7 +76,7 @@ export default class ContentHeader extends React.Component<IHeaderProps, IHeader
                         style={style.newEpisode}
                         as={Link}
                         to="/new_episode"
-                        positive>New episode</Button>
+                        positive>New Episode</Button>
                     {this.renderStorageWarning()}
                     {this.renderErrorMessage()}
                     {this.renderImportProgress()}
