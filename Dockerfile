@@ -8,6 +8,6 @@ from node:8-jessie
 COPY --from=jsBuilder /src/server/build /app
 # for server side, the build is just translate tsx to js, no packaging, we still need node_module to run.
 COPY --from=jsBuilder /src/server/node_modules /app/node_modules
-COPY --from=jsBuilder /src/server/src/public /app/public
+COPY --from=jsBuilder /src/server/build/public/src /app
 WORKDIR /app
 CMD node ./index.js
