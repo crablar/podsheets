@@ -52,7 +52,7 @@
     "audio-buffer-utils": "5.0.1",
     "audio-decode": "^1.3.1",
     "audio-lena": "^2.1.1",
-    "axios": "^0.16.1",
+    "axios": "^0.21.1",
     "babel-cli": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
     "boron": "^0.2.3",
