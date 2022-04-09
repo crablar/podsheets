@@ -21,7 +21,7 @@
   "dependencies": {
     "audio-buffer-utils": "^5.1.1",
     "audio-format": "^2.2.1",
-    "moment": "^2.18.1",
+    "moment": "^2.29.2",
     "react-quill": "v1.0.0-rc.3",
     "worker-loader": "^0.8.1"
   },
